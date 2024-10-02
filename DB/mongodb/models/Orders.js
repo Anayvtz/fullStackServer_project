@@ -1,0 +1,20 @@
+const mongoose = require("mongoose");
+const ADDRESS_VALIDATION = require("../helpers/addressValidation");
+const NAME_VALIDATION = require("../helpers/nameValidation");
+const EMAIL_VALIDATION = require("../helpers/emailValidation");
+
+
+const ordersSchema = new mongoose.Schema({
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    yarns: [{ yarnId: mongoose.Schema.Types.ObjectId, quantity: Number }],
+    customerName: NAME_VALIDATION,
+    customerAddress: ADDRESS_VALIDATION,
+    customerEmail: EMAIL_VALIDATION
+});
+
+const OrdersSchema = mongoose.model("order", ordersSchema);
+
+module.exports = OrdersSchema;
