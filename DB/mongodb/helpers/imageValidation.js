@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const STRING_VALIDATION = require("./stringValidation");
 
 
-const IMAGE_VALIDATION = new mongoose.Schema({
+
+const IMAGE_VALIDATION = {
     url: {
         type: String,
         trim: true,
@@ -12,6 +13,6 @@ const IMAGE_VALIDATION = new mongoose.Schema({
         ),
     },
     alt: STRING_VALIDATION,
-});
+};
 
 module.exports = IMAGE_VALIDATION;

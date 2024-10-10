@@ -12,9 +12,10 @@ const ordersSchema = new mongoose.Schema({
     yarns: [{ yarnId: mongoose.Schema.Types.ObjectId, quantity: Number }],
     customerName: NAME_VALIDATION,
     customerAddress: ADDRESS_VALIDATION,
-    customerEmail: EMAIL_VALIDATION
+    customerEmail: EMAIL_VALIDATION,
+    status: ['inprocess', 'completed']
 });
 
-const OrdersSchema = mongoose.model("order", ordersSchema);
+const OrdersModel = mongoose.model("order", ordersSchema);
 
-module.exports = OrdersSchema;
+module.exports = OrdersModel;

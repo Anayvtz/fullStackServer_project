@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const STRING_VALIDATION = require("./stringValidation");
 
 
-const ADDRESS_VALIDATION = new mongoose.Schema({
+
+const ADDRESS_VALIDATION = {
     state: {
         type: String,
         maxLength: 256,
@@ -20,6 +21,6 @@ const ADDRESS_VALIDATION = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-});
+};
 
 module.exports = ADDRESS_VALIDATION;
