@@ -1,0 +1,23 @@
+{
+    "name": {
+        "first": "Ell",
+        "middle": "",
+        "last": "Vis"
+    },
+    "phone": "0512345567",
+    "email": "admin@gmail.com",
+    "password": "Yvtz1858@",
+    "image": {
+        "url": "https://www.image.com",
+        "alt": "image"
+    },
+    "address": {
+        "state": "IL",
+        "country": "Israel",
+        "city": "Arad",
+        "street": "Shoham",
+        "houseNumber": 5,
+        "zip": 8920435
+    },
+    "isAdmin": true
+}

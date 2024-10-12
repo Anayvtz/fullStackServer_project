@@ -10,7 +10,7 @@ const router = express.Router();
 router.use("/yarns", yarnsRouterController);
 router.use("/users", usersRouterController);
 router.use("/orders", ordersRouterController);
-router.use("/stock", stockRouterController);
+router.use("/stocks", stockRouterController);
 
 router.use((req, res) => {
     return handleError(res, 404, "use", "Path not found");

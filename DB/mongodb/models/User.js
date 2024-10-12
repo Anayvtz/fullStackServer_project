@@ -22,13 +22,8 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    Cart: {
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        },
-        yarns: [{ yarnId: mongoose.Schema.Types.ObjectId, quantity: Number }]
-    }
+    Cart: [{ yarnId: mongoose.Schema.Types.ObjectId, quantity: Number }]
+
 });
 
 const UserModel = mongoose.model("user", userSchema);

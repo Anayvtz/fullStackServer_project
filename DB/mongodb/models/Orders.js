@@ -10,6 +10,7 @@ const ordersSchema = new mongoose.Schema({
         default: Date.now,
     },
     yarns: [{ yarnId: mongoose.Schema.Types.ObjectId, quantity: Number }],
+    customerId: mongoose.Schema.Types.ObjectId,
     customerName: NAME_VALIDATION,
     customerAddress: ADDRESS_VALIDATION,
     customerEmail: EMAIL_VALIDATION,

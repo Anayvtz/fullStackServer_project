@@ -1,6 +1,6 @@
 const express = require("express");
 const { handleError } = require("../utils/handleErrors");
-const { getYarns, createYarn, getYarn, deleteYarn } = require("../dataAccess/yarnsDataAccessService");
+const { getYarns, createYarn, getYarn, deleteYarn, getYarnBySize, updateYarn } = require("../dataAccess/yarnsDataAccessService");
 const auth = require("../authetication/authService");
 const validateYarn = require("../validation/yarnValidationService");
 const normalizeYarn = require("../normalization/normalizeYarn");
@@ -57,7 +57,7 @@ router.put("/:id", auth, async (req, res) => {
                 res,
                 403,
                 'router.put("/yarns/:id")',
-                "Authorization Error: Only the user who created the business card or admin can update its details"
+                "Authorization Error: Only the user who is admin can update its details"
             );
         }
 
@@ -67,7 +67,7 @@ router.put("/:id", auth, async (req, res) => {
         }
 
         let yarn = await normalizeYarn(updYarn);
-        yarn = await updateCard(id, yarn);
+        yarn = await updateYarn(id, yarn);
         res.send(yarn);
     } catch (error) {
         handleError(res, error.status || 400, 'router.put("/yarns/:id")', error.message);
@@ -84,7 +84,7 @@ router.delete("/:id", auth, async (req, res) => {
                 res,
                 403,
                 'router.delete("/yarns/:id")',
-                "Authorization Error: Only the user who created the business card or admin can delete this card"
+                "Authorization Error: Only the user who is admin can delete this yarn"
             );
         }
 
@@ -95,4 +95,13 @@ router.delete("/:id", auth, async (req, res) => {
     }
 });
 
+router.get("/search", async (req, res) => {
+    try {
+        const size = parseInt(req.query.size);
+        let yarns = getYarnBySize(size);
+        res.send(yarns);
+    } catch (error) {
+        handleError(res, error.status || 400, 'router.get("/yarns/search")', error.message);
+    }
+});
 module.exports = router;

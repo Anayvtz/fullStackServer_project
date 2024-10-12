@@ -4,6 +4,8 @@ const corsmiddleware = require("./middlewares/cors");
 const loggerMiddleware = require("./middlewares/loggerMiddleware");
 const router = require("./router/router");
 const { connectToDb } = require("./DB/dbService");
+const { handleError } = require("./utils/handleErrors");
+const registerAdminUser = require("./initialData/registerAdminUser");
 
 require("dotenv").config();
 
@@ -24,8 +26,8 @@ app.use((err, req, res, next) => {
     return handleError(res, 500, "app.use fallback error", message);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(chalk.yellow("app is listening to port " + PORT));
-    connectToDb();
-
+    await connectToDb();
+    await registerAdminUser();
 });
