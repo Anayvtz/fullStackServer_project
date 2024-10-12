@@ -77,6 +77,7 @@ login-user&admin  | x-auth-token   | GET       | http://localhost:8185/users/use
   "email": "admin@gmail.com",
   "password": "<password>"
 }
+-------------------
 2.1 login response
 ------------------
 x-auth-token
@@ -84,6 +85,7 @@ x-auth-token
 3. get-users body
 -----------------
 none
+-----------------------
 3.1 get-users response
 -----------------------
 list of all users info
@@ -91,6 +93,7 @@ list of all users info
 4. get-user body
 ----------------
 none
+----------------------
 4.1 get-user response
 ----------------------
 user info
@@ -98,6 +101,7 @@ user info
 5. edit-user body
 ------------------
 updated registered  user info
+-----------------------
 5.1 edit-user response
 -----------------------
 the updated user info
@@ -108,6 +112,7 @@ the updated user info
 yarnId: <yarn-id>, 
 quantity: <some-number>
 }
+------------------------------
 6.1 add-yarn-to-cart response
 ------------------------------
 the cart. i.e. array of yarn-id and quantity
@@ -115,6 +120,7 @@ the cart. i.e. array of yarn-id and quantity
 7. rmv-yarn-from-cart body
 --------------------------
 none
+-------------------------------
 7.1 rmv-yarn-from-cart response
 -------------------------------
 the updated cart
@@ -122,6 +128,7 @@ the updated cart
 8. toggle-is-business body
 ---------------------------
 none
+--------------------------------
 8.1 toggle-is-business response
 --------------------------------
 the updated user info
@@ -129,9 +136,11 @@ the updated user info
 9. delete-user body
 --------------------
 none
+-------------------------
 9.1 delete-user response
 -------------------------
 the deleted user info
+-------------------------
 
 
 ************************************************
