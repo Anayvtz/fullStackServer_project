@@ -20,15 +20,15 @@ which user        | header         |  command  | url                            
 --------------------------------------------------------------------------------------------
    admin          | x-auth-token   | GET       | http://localhost:8185/users       | N | get-users
 --------------------------------------------------------------------------------------------
-login-user&admin  | x-auth-token   | GET       | http://localhost:8185/users/<user-id> | N | get-user
+login-user&admin  | x-auth-token   | GET       | http://localhost:8185/users/user-id | N | get-user
 --------------------------------------------------------------------------------------------
- login-user       | x-auth-token   | PUT       | http://localhost:8185/users/<user-id> | Y | edit-user
+ login-user       | x-auth-token   | PUT       | http://localhost:8185/users/user-id | Y | edit-user
 --------------------------------------------------------------------------------------------
- login-user       | x-auth-token   | PUT       | http://localhost:8185/users/<user-id>/cart| Y | add-yarn-to-cart
+ login-user       | x-auth-token   | PUT       | http://localhost:8185/users/user-id/cart| Y | add-yarn-to-cart
  -------------------------------------------------------------------------------------------
- login-user       | x-auth-token   | DELETE    | http://localhost:8185/users/<user-id>/cart/<yarn-id> | N | rmv-yarn-from-cart
+ login-user       | x-auth-token   | DELETE    | http://localhost:8185/users/user-id/cart/yarn-id | N | rmv-yarn-from-cart
  -------------------------------------------------------------------------------------------
- admin            | x-auth-token   | PATCH     | http://localhost:8185/users/<user-id> | N | toggle-is-business
+ admin            | x-auth-token   | PATCH     | http://localhost:8185/users/user-id | N | toggle-is-business
  -------------------------------------------------------------------------------------------
- admin            | x-auth-token   | DELETE    | http://localhost:8185/users/<user-id> | N | delete-user
+ admin            | x-auth-token   | DELETE    | http://localhost:8185/users/user-id | N | delete-user
  ============================================================================================
