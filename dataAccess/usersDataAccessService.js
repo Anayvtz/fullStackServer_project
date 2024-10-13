@@ -87,14 +87,14 @@ const deleteUser = async (id) => {
     }
 };
 
-const addYarnToUserCart = async (userId, yarnId, quantity) => {
+const addYarnToUserCart = async (userId, yarnId, image, quantity) => {
     try {
         const user = await UserModel.findById(userId);
         const cartItem = user.Cart.find(item => item.yarnId == yarnId);
         if (cartItem) {
             cartItem.quantity += quantity;
         } else {
-            user.Cart.push({ yarnId, quantity });
+            user.Cart.push({ yarnId, image, quantity });
         }
         await user.save();
         return user.Cart;

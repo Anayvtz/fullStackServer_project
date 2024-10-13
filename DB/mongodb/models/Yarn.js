@@ -16,7 +16,18 @@ const yarnSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: IMAGE_VALIDATION
+    image: {
+        url: {
+            type: String,
+            trim: true,
+            lowercase: true,
+            match: RegExp(
+                /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/
+            ),
+            unique: true,
+        },
+        alt: STRING_VALIDATION
+    }
 });
 const YarnModel = mongoose.model("yarn", yarnSchema);
 module.exports = YarnModel;

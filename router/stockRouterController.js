@@ -1,7 +1,8 @@
 const express = require("express");
 const validateStock = require("../validation/stockValidationService");
 const auth = require("../authetication/authService");
-const { getStock, updateStock, deleteStock } = require("../dataAccess/stockDataAccessService");
+const { getStock, updateStock, deleteStock, getStocks, createStock } = require("../dataAccess/stockDataAccessService");
+const { handleError } = require("../utils/handleErrors");
 
 const router = express.Router();
 

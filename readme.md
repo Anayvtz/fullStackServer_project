@@ -59,6 +59,7 @@ login-user&admin  | x-auth-token   | GET       | http://localhost:8185/users/use
     "zip": 8920435
   }
 }
+----------------------
 1.1 register response
 ----------------------
 {
@@ -146,4 +147,22 @@ the deleted user info
 ************************************************
 
 
+yarns:
 
+Yarns Commands Body & Response
+==============================
+---------------------
+2. create-yarn body
+---------------------
+{
+  "title": "beautiful light blue yarn" ,
+    "subtitle": "weight 4 yarn",
+    "description": "beautiful weight 4 yarn for shawls, sweather, hats and more",
+    "yarnSize": 4,
+    "quantityInStock": 10,
+    "image": {
+        "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTf-JroeWhnIUJIXN2gOy7eJ7f9mCnylz9GCj3tFBm5JJloyXlO0FUytLu5X5lv87PMAPdrF1jGf0_KmyndKY6EQ_XEJY3h-FoSO7PE0Yef6P4xHk2mdodM-g&usqp=CAc",
+        "alt": "yarn image"
+    }
+}
+-----------------------------

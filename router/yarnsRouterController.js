@@ -4,6 +4,8 @@ const { getYarns, createYarn, getYarn, deleteYarn, getYarnBySize, updateYarn } =
 const auth = require("../authetication/authService");
 const validateYarn = require("../validation/yarnValidationService");
 const normalizeYarn = require("../normalization/normalizeYarn");
+const validateStock = require("../validation/stockValidationService");
+const { createStock, findStockByYarnId, deleteStock, updateStock } = require("../dataAccess/stockDataAccessService");
 
 const router = express.Router();
 
@@ -30,6 +32,14 @@ router.post("/", auth, async (req, res) => {
 
         let yarn = await normalizeYarn(req.body);
         yarn = await createYarn(yarn);
+
+        let stock = { yarnId: yarn._id.toString(), image: { url: yarn.image.url, alt: yarn.image.alt }, quantity: yarn.quantityInStock };
+        const errorMsg = validateStock(stock);
+        if (errorMsg !== "") {
+            return handleError(res, 400, 'post("/yarns/")', "Validation error: " + errorMsg);
+        }
+        stock = await createStock(stock);
+
         res.status(201).send(yarn);
     } catch (error) {
         handleError(res, error.status || 400, 'post("/yarns/")', error.message);
@@ -68,6 +78,14 @@ router.put("/:id", auth, async (req, res) => {
 
         let yarn = await normalizeYarn(updYarn);
         yarn = await updateYarn(id, yarn);
+        let stock = findStockByYarnId(id);
+        console.log("yarn id:" + id);
+        console.log("stock yarn id:" + stock.yarnId);
+
+        stock.yarnId = id;
+        console.log("UPD stock yarn id:" + stock.yarnId);
+        stock.quantity = yarn.quantityInStock;
+        await updateStock(stock._id, stock);
         res.send(yarn);
     } catch (error) {
         handleError(res, error.status || 400, 'router.put("/yarns/:id")', error.message);
@@ -89,6 +107,8 @@ router.delete("/:id", auth, async (req, res) => {
         }
 
         let yarn = await deleteYarn(id);
+        let stock = await findStockByYarnId(yarn._id);
+        stock = await deleteStock(stock._id);
         res.send(yarn);
     } catch (error) {
         handleError(res, error.status || 400, 'router.delete("/yarns/:id")', error.message);

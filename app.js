@@ -6,6 +6,9 @@ const router = require("./router/router");
 const { connectToDb } = require("./DB/dbService");
 const { handleError } = require("./utils/handleErrors");
 const registerAdminUser = require("./initialData/registerAdminUser");
+const generateYarns = require("./initialData/generateYarns");
+const { getUsers } = require("./dataAccess/usersDataAccessService");
+const { getYarns } = require("./dataAccess/yarnsDataAccessService");
 
 require("dotenv").config();
 
@@ -29,5 +32,10 @@ app.use((err, req, res, next) => {
 app.listen(PORT, async () => {
     console.log(chalk.yellow("app is listening to port " + PORT));
     await connectToDb();
-    await registerAdminUser();
+    if (getUsers().length == 0) {
+        await registerAdminUser();
+    }
+    if (getYarns().length == 0) {
+        await generateYarns();
+    }
 });

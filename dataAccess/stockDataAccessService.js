@@ -1,4 +1,5 @@
 const StockModel = require("../DB/mongodb/models/Stock");
+const { createError } = require("../utils/handleErrors");
 const { updateYarnQuantity } = require("./yarnsDataAccessService");
 
 const createStock = async (newStock) => {
@@ -51,4 +52,12 @@ const deleteStock = async (stockId) => {
     }
 };
 
-module.exports = { createStock, getStocks, getStock, updateStock, deleteStock }
+const findStockByYarnId = async (yarnId) => {
+    try {
+        let stock = await StockModel.find({ yarnId: yarnId });
+        return stock;
+    } catch (error) {
+        return createError("findStockByYarnId", "Mongoose", error);
+    }
+}
+module.exports = { createStock, getStocks, getStock, updateStock, deleteStock, findStockByYarnId }
