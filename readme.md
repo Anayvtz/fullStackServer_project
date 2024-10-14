@@ -1,7 +1,7 @@
 
-the server listens on port 8185.
+## the server listens on port 8185.
 
-how to install the server ?
+## how to install the server ?
 1. take the code from git
 2. npm i
 3. npm run dev
@@ -9,7 +9,7 @@ how to install the server ?
 Commands
 =========
 
-Users:
+## Users:
 
 ===========================================================================================
 which user        | header         |  command  | url                             |  body  |action
@@ -33,8 +33,8 @@ login-user&admin  | x-auth-token   | GET       | http://localhost:8185/users/use
  admin            | x-auth-token   | DELETE    | http://localhost:8185/users/user-id | N | delete-user
  -------------------------------------------------------------------------------------------
 
- Users Commands Body & Response
- ===============================
+## Users Commands Body & Response
+ =================================
  1. register
  ------------
  {
@@ -144,13 +144,37 @@ the deleted user info
 -------------------------
 
 
-************************************************
+##################################################
 
 
-yarns:
+## yarns:
+===========================================================================================
+which user        | header         |  command  | url                             |  body  |action
+============================================================================================
+ --               | --             | GET       | http://localhost:8185/yarns/    | N      | get-yarns
+---------------------------------------------------------------------------------------------
+ admin            | x-auth-token   | POST      | http://localhost:8185/yarns     | Y      | create-yarn
+---------------------------------------------------------------------------------------------
+ --               | --             | GET       | http://localhost:8185/yarns/yarn-id | N  | get-yarn
+---------------------------------------------------------------------------------------------
+ admin            | x-auth-token   | PUT       | http://localhost:8185/yarns/yarn-id | Y  | update-yarn
+---------------------------------------------------------------------------------------------
+ admin            | x-auth-token   | DELETE    | http://localhost:8185/yarns/yarn-id | N  | delete-yarn
+---------------------------------------------------------------------------------------------
+ --               | --             | GET       | http://localhost:8185/yarns/search?size=yarn-size | N | get-yarn-by-size
+ --------------------------------------------------------------------------------------------
 
-Yarns Commands Body & Response
-==============================
+
+
+## Yarns Commands Body & Response
+=================================
+1. get-yarns body
+-----------------
+none
+------------------
+1.1 get-yarns response
+-----------------------
+array of created yarn body
 ---------------------
 2. create-yarn body
 ---------------------
@@ -166,3 +190,42 @@ Yarns Commands Body & Response
     }
 }
 -----------------------------
+2.1 create-yarn response
+--------------------------
+the created yarn
+-----------------
+3. get-yarn body
+-----------------
+none
+-----------------
+3.1 get-yarn response
+----------------------
+the created yarn
+----------------------
+4. update-yarn body
+----------------------
+the created yarn body updated
+-----------------------------
+4.1 update-yarn response
+-------------------------
+the updated yarn
+-------------------------
+5. delete-yarn body
+-------------------------
+none
+--------------------------
+5.1 delete-yarn response
+--------------------------
+the deleted yarn
+--------------------------
+6. get-yarn-by-size body
+--------------------------
+none
+--------------------------
+6.1 get-yarn-by-size response
+------------------------------
+array of yarns of specified size
+---------------------------------
+
+
+## stocks:
