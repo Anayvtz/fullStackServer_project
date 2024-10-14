@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
     }
 });
 
+/* stock is created by yarn-create
 router.post("/", auth, async (req, res) => {
     try {
         const userInfo = req.user;
@@ -33,6 +34,7 @@ router.post("/", auth, async (req, res) => {
         handleError(res, error.status || 400, 'post("/yarns/")', error.message);
     }
 });
+*/
 
 router.get("/:id", async (req, res) => {
     try {
@@ -71,6 +73,7 @@ router.put("/:id", auth, async (req, res) => {
     }
 });
 
+/* deleted by yarn-delete
 router.delete("/:id", auth, async (req, res) => {
     try {
         const userInfo = req.user;
@@ -90,6 +93,6 @@ router.delete("/:id", auth, async (req, res) => {
     } catch (error) {
         handleError(res, error.status || 400, 'router.delete("/stocks/:id")', error.message);
     }
-});
+});*/
 
 module.exports = router;

@@ -41,7 +41,7 @@ const getYarnBySize = async (yarnSz) => {
 
 const updateYarn = async (yarnId, newYarn) => {
     try {
-        let yarn = await YarnModel.findByIdAndUpdate(yarnId, newYarn, { new: true });
+        let yarn = await YarnModel.findByIdAndUpdate(yarnId, newYarn);
         return yarn;
     } catch (error) {
         return createError("updateYarn", "Mongoose", error);

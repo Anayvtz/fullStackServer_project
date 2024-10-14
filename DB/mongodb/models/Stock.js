@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 const STRING_VALIDATION = require("../helpers/stringValidation");
+const { unique } = require("../helpers/emailValidation");
 
 
 
 const stockSchema = new mongoose.Schema({
-    yarnId: mongoose.Schema.Types.ObjectId,
+    yarnId: {
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true
+    },
+
     image: {
         url: {
             type: String,

@@ -32,7 +32,8 @@ const getStock = async (stockId) => {
 
 const updateStock = async (stockId, updStock) => {
     try {
-        let stock = await StockModel.findByIdAndUpdate(stockId, updStock, { new: true });
+        let stock = await StockModel.findByIdAndUpdate(stockId, updStock);
+        stock = await stock.save();
         let { yarnId, quantity } = stock;
         updateYarnQuantity(yarnId, quantity);
         return stock;
