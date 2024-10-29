@@ -200,7 +200,32 @@ none
 -----------------
 3.1 get-yarn response
 ----------------------
-the created yarn
+the created yarn and the created stock
+{
+    "yarn": {
+        "title": "beautiful pink yarn",
+        "subtitle": "weight 7 yarn",
+        "description": "beautiful weight 7 yarn for shawls, sweather, hats and more",
+        "yarnSize": 7,
+        "quantityInStock": 40,
+        "image": {
+            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:and9gcrm7vpmlnpx-vecdtvep5pwk1qtjrejpebenw&s",
+            "alt": "yarn image"
+        },
+        "_id": "670f9dee465d193c6191f5dc",
+        "__v": 0
+    },
+    "stock": {
+        "yarnId": "670f9dee465d193c6191f5dc",
+        "image": {
+            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:and9gcrm7vpmlnpx-vecdtvep5pwk1qtjrejpebenw&s",
+            "alt": "yarn image"
+        },
+        "quantity": 40,
+        "_id": "670f9dee465d193c6191f5de",
+        "__v": 0
+    }
+}
 ----------------------
 4. update-yarn body
 ----------------------
@@ -239,3 +264,36 @@ which user        | header         |  command  | url                            
  --------------------------------------------------------------------------------------------
  admin            | x-auth-token   | PUT       | http://localhost:8185/stocks/stock-id | Y | update-stock
  --------------------------------------------------------------------------------------------
+
+
+## Stocks Commands Body & Response
+=================================
+1. get-stocks body
+-------------------
+none
+-------------------
+1.1 get-stocks response
+-----------------------
+the stock info
+-----------------------
+2. get-stock body
+-----------------------
+none
+-----------------------
+2.1 get-stock response
+-----------------------
+the stock
+---------------------
+ 3. update-stock body
+ --------------------
+ {
+    "yarnId": "670b9b404fe113e367bc2362",
+    "image": {
+            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gctf-jroewhniujixn2goy7ej7f9mcnylz9gcj3tfbm5jjloyxlo0fuytlu5x5lv87pmapdrf1jgf0_kmyndky6eq_xejy3h-foso7pe0yef6p4xhk2mdodm-g&usqp=cac",
+            "alt":"yarn image"
+    },
+    "quantity": 23
+ }
+ --------------------
+ 3.1 update-stock response
+ --------------------------

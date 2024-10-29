@@ -40,12 +40,20 @@ router.post("/", auth, async (req, res) => {
         }
         stock = await createStock(stock);
 
-        res.status(201).send(yarn);
+        res.status(201).send({ yarn, stock });
     } catch (error) {
         handleError(res, error.status || 400, 'post("/yarns/")', error.message);
     }
 });
-
+router.get("/search", async (req, res) => {
+    try {
+        const size = parseInt(req.query.size);
+        let yarns = await getYarnBySize(size);
+        res.send(yarns);
+    } catch (error) {
+        handleError(res, error.status || 400, 'router.get("/yarns/search")', error.message);
+    }
+});
 router.get("/:id", async (req, res) => {
     try {
         const { id } = req.params;
@@ -78,15 +86,19 @@ router.put("/:id", auth, async (req, res) => {
 
         let yarn = await normalizeYarn(updYarn);
         yarn = await updateYarn(id, yarn);
-        let stock = findStockByYarnId(id);
+        let stock = await findStockByYarnId(id);
         console.log("yarn id:" + id);
-        console.log("stock yarn id:" + stock.yarnId);
+        console.log("stock yarn id:" + stock);
 
         stock.yarnId = id;
         console.log("UPD stock yarn id:" + stock.yarnId);
+        console.log("yarn quantityInStock:" + yarn.quantityInStock);
+        console.log("stock.quantity:" + stock.quantity);
+
         stock.quantity = yarn.quantityInStock;
-        await updateStock(stock._id, stock);
-        res.send(yarn);
+        await stock.save();
+        // let stockYarnObject = await updateStock(stock._id, stock);
+        res.send({ stock, yarn });
     } catch (error) {
         handleError(res, error.status || 400, 'router.put("/yarns/:id")', error.message);
     }
@@ -106,22 +118,15 @@ router.delete("/:id", auth, async (req, res) => {
             );
         }
 
-        let yarn = await deleteYarn(id);
-        let stock = await findStockByYarnId(yarn._id);
+
+        let stock = await findStockByYarnId(id);
         stock = await deleteStock(stock._id);
-        res.send(yarn);
+        let yarn = await deleteYarn(id);
+        res.send({ yarn, stock });
     } catch (error) {
         handleError(res, error.status || 400, 'router.delete("/yarns/:id")', error.message);
     }
 });
 
-router.get("/search", async (req, res) => {
-    try {
-        const size = parseInt(req.query.size);
-        let yarns = getYarnBySize(size);
-        res.send(yarns);
-    } catch (error) {
-        handleError(res, error.status || 400, 'router.get("/yarns/search")', error.message);
-    }
-});
+
 module.exports = router;

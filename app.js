@@ -32,10 +32,14 @@ app.use((err, req, res, next) => {
 app.listen(PORT, async () => {
     console.log(chalk.yellow("app is listening to port " + PORT));
     await connectToDb();
-    if (getUsers().length == 0) {
+
+    let users = await getUsers();
+    if (users.length == 0) {
         await registerAdminUser();
     }
-    if (getYarns().length == 0) {
+    let yarns = await getYarns();
+    if (yarns.length == 0) {
+
         await generateYarns();
     }
 });

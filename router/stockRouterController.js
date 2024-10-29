@@ -46,7 +46,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put("/:id", auth, async (req, res) => {
+router.patch("/:id", auth, async (req, res) => {
     try {
         const userInfo = req.user;
         const updStock = req.body;
@@ -66,8 +66,8 @@ router.put("/:id", auth, async (req, res) => {
             return handleError(res, 400, 'router.put("/stocks/:id")', "Validation error: " + errorMessage);
         }
 
-        stock = await updateStock(id, updStock);
-        res.send(stock);
+        let objectStockYarn = await updateStock(id, updStock);
+        res.send(objectStockYarn);
     } catch (error) {
         handleError(res, error.status || 400, 'router.put("/stocks/:id")', error.message);
     }
