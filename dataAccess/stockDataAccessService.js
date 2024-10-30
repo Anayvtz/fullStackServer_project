@@ -47,7 +47,7 @@ const deleteStock = async (stockId) => {
     try {
         let stock = await StockModel.findByIdAndDelete(stockId);
         let { yarnId, quantity } = stock;
-        updateYarnQuantity(yarnId, quantity);
+        await updateYarnQuantity(yarnId, quantity);
         return stock;
     } catch (error) {
         return createError("deleteStock", "Mongoose", error);
@@ -57,8 +57,10 @@ const deleteStock = async (stockId) => {
 const findStockByYarnId = async (yarnId) => {
     try {
         if (!yarnId) return createError("findStockByYarnId", "yarnId", "yarnId is null");
-        let stock = await StockModel.find({ yarnId: yarnId });
+        let stock = await StockModel.findOne({ yarnId: yarnId });
         if (!stock) return createError("findStockByYarnId", "stockModel.find", "stock is null. not found");
+        console.log("stock._id:" + stock._id);
+        console.log("stock.yarnId:" + stock.yarnId);
         return stock;
     } catch (error) {
         return createError("findStockByYarnId", "Mongoose", error);
