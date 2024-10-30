@@ -85,20 +85,22 @@ router.put("/:id", auth, async (req, res) => {
         }
 
         let yarn = await normalizeYarn(updYarn);
-        yarn = await updateYarn(id, yarn);
+
         let stock = await findStockByYarnId(id);
         console.log("yarn id:" + id);
         console.log("stock yarn id:" + stock);
 
-        stock.yarnId = id;
+
         console.log("UPD stock yarn id:" + stock.yarnId);
-        console.log("yarn quantityInStock:" + yarn.quantityInStock);
-        console.log("stock.quantity:" + stock.quantity);
+        console.log("B4 yarn quantityInStock:" + yarn.quantityInStock);
+        console.log("B4 stock.quantity:" + stock.quantity);
 
         stock.quantity = yarn.quantityInStock;
+        console.log("AFTER stock.quantity:" + stock.quantity);
         await stock.save();
+        yarn = await updateYarn(id, yarn);
         // let stockYarnObject = await updateStock(stock._id, stock);
-        res.send({ stock, yarn });
+        res.send({ yarn, stock });
     } catch (error) {
         handleError(res, error.status || 400, 'router.put("/yarns/:id")', error.message);
     }
