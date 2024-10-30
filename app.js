@@ -37,6 +37,7 @@ app.listen(PORT, async () => {
     if (users.length == 0) {
         await registerAdminUser();
     }
+
     let yarns = await getYarns();
     if (yarns.length == 0) {
 

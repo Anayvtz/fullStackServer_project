@@ -90,16 +90,23 @@ const deleteUser = async (id) => {
 const addYarnToUserCart = async (userId, yarnId, image, quantity) => {
     try {
         const user = await UserModel.findById(userId);
-        const cartItem = user.Cart.find(item => item.yarnId == yarnId);
+        const cartItem = await user.Cart.find(item => item.yarnId == yarnId);
         if (cartItem) {
             cartItem.quantity += quantity;
         } else {
-            user.Cart.push({ yarnId, image, quantity });
+            if (image && image.alt && image.alt.length >= 2) {
+                user.Cart.push({ yarnId, image, quantity });
+            } else {
+                return createError("addYarnToUserCart", "Mongoose:", 'Invalid image data:' + image);
+            }
+
+
         }
         await user.save();
+
         return user.Cart;
     } catch (error) {
-        return createError("addYarnToUserCart", "Mongoose:", err);
+        return createError("addYarnToUserCart", "Mongoose:", error);
     }
 };
 const removeYarnFromUserCart = async (id, yarnId) => {

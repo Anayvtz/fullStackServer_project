@@ -233,7 +233,7 @@ the created yarn body updated
 -----------------------------
 4.1 update-yarn response
 -------------------------
-the updated yarn
+the updated yarn and the updated stock
 -------------------------
 5. delete-yarn body
 -------------------------
@@ -241,7 +241,7 @@ none
 --------------------------
 5.1 delete-yarn response
 --------------------------
-the deleted yarn
+the deleted yarn and the deleted stock
 --------------------------
 6. get-yarn-by-size body
 --------------------------
