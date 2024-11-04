@@ -110,8 +110,12 @@ the updated user info
 6. add-yarn-to-cart body
 ------------------------
 {
-yarnId: <yarn-id>, 
-quantity: <some-number>
+    "yarnId": "yarn-id",
+    "image": {
+            "url": "the-image-url",
+            "alt": "yarn image"
+        },
+    "quantity": some-number
 }
 ------------------------------
 6.1 add-yarn-to-cart response

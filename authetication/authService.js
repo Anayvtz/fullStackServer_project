@@ -1,3 +1,4 @@
+const { createError, handleError } = require("../utils/handleErrors");
 const { verifyToken } = require("./verification/jwt");
 
 const auth = (req, res, next) => {

@@ -107,7 +107,7 @@ router.put("/:id/cart", auth, async (req, res) => {
         }
 
         const { yarnId, image, quantity } = req.body;
-        let cart = addYarnToUserCart(id, yarnId, image, quantity);
+        let cart = await addYarnToUserCart(id, yarnId, image, quantity);
         return res.send(cart);
     } catch (error) {
         return handleError(res, error.status || 400, 'router.put("/users/:id/cart")', error.message);
