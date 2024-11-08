@@ -36,7 +36,8 @@ const userSchema = new mongoose.Schema({
             },
             alt: STRING_VALIDATION
         },
-        quantity: Number
+        quantity: Number,
+        price: Number
     }]
 
 });

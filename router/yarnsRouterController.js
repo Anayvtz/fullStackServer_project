@@ -45,6 +45,7 @@ router.post("/", auth, async (req, res) => {
         handleError(res, error.status || 400, 'post("/yarns/")', error.message);
     }
 });
+
 router.get("/search", async (req, res) => {
     try {
         const size = parseInt(req.query.size);

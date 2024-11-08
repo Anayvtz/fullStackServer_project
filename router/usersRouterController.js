@@ -2,7 +2,7 @@ const express = require("express");
 const { handleError } = require("../utils/handleErrors");
 const auth = require("../authetication/authService");
 const { validateUserRegistration, validateUserLogin } = require("../validation/userValidationService");
-const { registerUser, loginUser, getUser, editUser, changeIsBusiness, deleteUser, getUsers, addYarnToUserCart, removeYarnFromUserCart } = require("../dataAccess/usersDataAccessService");
+const { registerUser, loginUser, getUser, editUser, changeIsBusiness, deleteUser, getUsers, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity } = require("../dataAccess/usersDataAccessService");
 
 const router = express.Router();
 
@@ -92,6 +92,27 @@ router.put("/:id", auth, async (req, res) => {
     }
 });
 
+router.get("/:id/cart", auth, async (req, res) => {
+    try {
+        const userInfo = req.user;
+        const { id } = req.params;
+
+        if (userInfo._id !== id) {
+            return handleError(
+                res,
+                403,
+                'router.get("/users/:id")',
+                "Authorization Error: Only the login user can get user info"
+            );
+        }
+
+        let cart = await getUserCart(id);
+        return res.send(cart);
+    } catch (error) {
+        return handleError(res, error.status || 400, 'router.get("/users/:id/cart")', error.message);
+    }
+});
+
 router.put("/:id/cart", auth, async (req, res) => {
     try {
         const userInfo = req.user;
@@ -106,8 +127,10 @@ router.put("/:id/cart", auth, async (req, res) => {
             );
         }
 
-        const { yarnId, image, quantity } = req.body;
-        let cart = await addYarnToUserCart(id, yarnId, image, quantity);
+        const { yarnId, image, quantity, price } = req.body;
+        console.log("B4 addYarnToUserCart");
+
+        let cart = await addYarnToUserCart(id, yarnId, image, quantity, price);
         return res.send(cart);
     } catch (error) {
         return handleError(res, error.status || 400, 'router.put("/users/:id/cart")', error.message);
@@ -127,10 +150,33 @@ router.delete("/:id/cart/:yarnId", auth, async (req, res) => {
                 "Authorization Error: Only the login user can edit user info"
             );
         }
-        let cart = removeYarnFromUserCart(id, yarnId);
+        let cart = await removeYarnFromUserCart(id, yarnId);
+        console.log(cart);
+
         return res.send(cart);
     } catch (error) {
         return handleError(res, error.status || 400, 'router.delete("/users/:id/cart/:yarnId")', error.message);
+    }
+});
+
+router.get("/:id/cart/:yarnId", auth, async (req, res) => {
+    try {
+        const userInfo = req.user;
+        const { id, yarnId } = req.params;
+
+        if (userInfo._id !== id) {
+            return handleError(
+                res,
+                403,
+                'router.delete("/users/:id/cart/:yarnId")',
+                "Authorization Error: Only the login user can edit user info"
+            );
+        }
+
+        let cartEntity = await getUserCartEntity(id, yarnId);
+        return res.send(cartEntity);
+    } catch (error) {
+        return handleError(res, error.status || 400, 'router.get("/users/:id/cart/:yarnId")', error.message);
     }
 });
 

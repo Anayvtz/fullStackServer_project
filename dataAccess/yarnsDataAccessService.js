@@ -57,7 +57,14 @@ const updateYarnQuantity = async (yarnId, quantity) => {
         return createError("updateYarnQuantity", "Mongoose", error);
     }
 };
-
+const getYarnQuantity = async (yarnId) => {
+    try {
+        let yarn = await YarnModel.findById(yarnId);
+        return yarn.quantityInStock;
+    } catch (error) {
+        return createError("getYarnQuantity", "Mongoose", error);
+    }
+}
 const deleteYarn = async (yarnId) => {
     try {
         let yarn = await YarnModel.findByIdAndDelete(yarnId);
@@ -67,4 +74,4 @@ const deleteYarn = async (yarnId) => {
     }
 };
 
-module.exports = { createYarn, getYarns, getYarn, getYarnBySize, updateYarn, deleteYarn, updateYarnQuantity };
+module.exports = { createYarn, getYarns, getYarn, getYarnBySize, updateYarn, deleteYarn, updateYarnQuantity, getYarnQuantity };

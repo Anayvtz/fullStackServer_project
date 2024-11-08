@@ -18,7 +18,8 @@ const validateYarnWithJoi = (yarn) => {
                     .required(""),
                 alt: Joi.string().min(2).max(256).allow(""),
             })
-            .required()
+            .required(),
+        price: Joi.number().min(1).required()
     });
 
     return schema.validate(yarn);

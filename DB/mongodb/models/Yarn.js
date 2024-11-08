@@ -26,7 +26,8 @@ const yarnSchema = new mongoose.Schema({
             ),
         },
         alt: STRING_VALIDATION
-    }
+    },
+    price: Number
 });
 const YarnModel = mongoose.model("yarn", yarnSchema);
 module.exports = YarnModel;

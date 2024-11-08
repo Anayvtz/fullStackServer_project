@@ -3,6 +3,7 @@ const _ = require("lodash");
 const { generateUserPassword, comaprePasswords } = require("../encrypt/bcrypt");
 const { generateAuthToken } = require("../authetication/verification/jwt");
 const { createError } = require("../utils/handleErrors");
+const { getYarnQuantity } = require("./yarnsDataAccessService");
 
 const registerUser = async (newUser) => {
     try {
@@ -87,22 +88,36 @@ const deleteUser = async (id) => {
     }
 };
 
-const addYarnToUserCart = async (userId, yarnId, image, quantity) => {
+const addYarnToUserCart = async (userId, yarnId, image, quantity, price) => {
     try {
         const user = await UserModel.findById(userId);
-        const cartItem = await user.Cart.find(item => item.yarnId == yarnId);
+        const cartItem = user.Cart.find(item => item.yarnId == yarnId);
+        const yarnQuantity = await getYarnQuantity(yarnId);
         if (cartItem) {
+            if (cartItem.quantity == yarnQuantity) {
+                return createError("addYarnToUserCart", "server:", "cant add more yarn max quantity in stock reached");
+            }
             cartItem.quantity += quantity;
+            if (cartItem.quantity > yarnQuantity) {
+                cartItem.quantity = yarnQuantity;
+            }
         } else {
+            if (quantity > yarnQuantity) {
+                quantity = yarnQuantity;
+            }
             if (image && image.alt && image.alt.length >= 2) {
-                user.Cart.push({ yarnId, image, quantity });
+                console.log("image.alt:" + image.alt);
+
+                user.Cart.push({ yarnId, image, quantity, price });
             } else {
                 return createError("addYarnToUserCart", "Mongoose:", 'Invalid image data:' + image);
             }
 
 
         }
+
         await user.save();
+        console.log("after user.save");
 
         return user.Cart;
     } catch (error) {
@@ -116,9 +131,35 @@ const removeYarnFromUserCart = async (id, yarnId) => {
         await user.save();
         return user.Cart;
     } catch (error) {
-        return createError("removeYarnFromUserCart", "Mongoose:", err);
+        return createError("removeYarnFromUserCart", "Mongoose:", error);
     }
 }
 
+const getUserCart = async (id) => {
+    try {
+        const user = await UserModel.findById(id);
+        return user.Cart;
+    }
+    catch (error) {
+        return createError("getUserCart", "Mongoose:", error);
+    }
+}
+const getUserCartEntity = async (id, yarnId) => {
+    try {
+        const user = await UserModel.findById(id);
 
-module.exports = { registerUser, getUser, getUsers, loginUser, editUser, changeIsBusiness, deleteUser, addYarnToUserCart, removeYarnFromUserCart };
+        for (let i = 0; i < user.Cart.length; i++) {
+            if (user.Cart[i].yarnId == yarnId) {
+                console.log("getUserCartEntity yarnId:", user.Cart[i].yarnId);
+                console.log("getUserCartEntity quantity:", user.Cart[i].quantity);
+
+                return user.Cart[i];
+            }
+        }
+        return null;
+
+    } catch (error) {
+        return createError("getUserCartEntity", "Mongoose:", error);
+    }
+}
+module.exports = { registerUser, getUser, getUsers, loginUser, editUser, changeIsBusiness, deleteUser, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity };
