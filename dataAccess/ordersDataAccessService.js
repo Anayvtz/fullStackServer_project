@@ -3,6 +3,7 @@ const { createError } = require("../utils/handleErrors");
 
 const createOrder = async (newOrder) => {
     try {
+        console.log("new order yarn:", newOrder.yarn)
         let order = new OrdersModel(newOrder);
         order.status = "inprocess";
         order = await order.save();
