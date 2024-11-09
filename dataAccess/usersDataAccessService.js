@@ -162,4 +162,15 @@ const getUserCartEntity = async (id, yarnId) => {
         return createError("getUserCartEntity", "Mongoose:", error);
     }
 }
-module.exports = { registerUser, getUser, getUsers, loginUser, editUser, changeIsBusiness, deleteUser, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity };
+
+const deleteUserCart = async (id) => {
+    try {
+        const user = await UserModel.findById(id);
+        user.Cart = [];
+        user.save();
+        return user.Cart;
+    } catch (error) {
+        return createError("deleteUserCart", "Mongoose:", error);
+    }
+}
+module.exports = { registerUser, getUser, getUsers, loginUser, editUser, changeIsBusiness, deleteUser, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity, deleteUserCart };

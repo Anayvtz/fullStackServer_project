@@ -4,6 +4,7 @@ const validateOrders = require("../validation/ordersValidationService");
 const { createOrder, getOrder, updateOrder, deleteOrder, getMyOrders, updateOrderStatus, getOrdersByCustomer, getOrders } = require("../dataAccess/ordersDataAccessService");
 const normalizeOrder = require("../normalization/normalizeOrder");
 const { handleError } = require("../utils/handleErrors");
+const { deleteUserCart } = require("../dataAccess/usersDataAccessService");
 
 const router = express.Router();
 
@@ -39,6 +40,7 @@ router.post("/:id", auth, async (req, res) => {
 
         let order = await normalizeOrder(id, req.body);
         order = await createOrder(order);
+        await deleteUserCart(id);
         res.status(201).send(order);
     } catch (error) {
         handleError(res, error.status || 400, 'post("/orders/:id")', error.message);
