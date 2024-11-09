@@ -9,7 +9,7 @@ const STRING_VALIDATION = require("../helpers/stringValidation");
 const userSchema = new mongoose.Schema({
     name: NAME_VALIDATION,
     phone: PHONE_VALIDATION,
-    email: EMAIL_VALIDATION,
+    email: { ...EMAIL_VALIDATION, unique: true },
     password: {
         type: String,
         required: true,

@@ -8,8 +8,7 @@ const EMAIL_VALIDATION = {
     required: true,
     match: RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/),
     lowercase: true,
-    trim: true,
-    unique: true,
+    trim: true
 };
 
 module.exports = EMAIL_VALIDATION;
