@@ -1,13 +1,23 @@
 const express = require("express");
 const auth = require("../authetication/authService");
 const validateOrders = require("../validation/ordersValidationService");
-const { createOrder, getOrder, updateOrder, deleteOrder, getMyOrders, updateOrderStatus, getOrdersByCustomer } = require("../dataAccess/ordersDataAccessService");
+const { createOrder, getOrder, updateOrder, deleteOrder, getMyOrders, updateOrderStatus, getOrdersByCustomer, getOrders } = require("../dataAccess/ordersDataAccessService");
 const normalizeOrder = require("../normalization/normalizeOrder");
+const { handleError } = require("../utils/handleErrors");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
     try {
+        const userInfo = req.user;
+        if (!userInfo.isAdmin) {
+            return handleError(
+                res,
+                403,
+                'router.get("/")',
+                "Authorization Error: Only the  admin can get all orders of all customers"
+            );
+        }
         let orders = await getOrders();
         res.send(orders);
     } catch (error) {
@@ -34,15 +44,6 @@ router.post("/:id", auth, async (req, res) => {
         handleError(res, error.status || 400, 'post("/orders/:id")', error.message);
     }
 });
-router.get("/:id", async (req, res) => {
-    try {
-        const { id } = req.params;
-        let order = await getOrder(id);
-        res.send(order);
-    } catch (error) {
-        handleError(res, error.status || 400, 'router.get("/orders/:id")', error.message);
-    }
-});
 router.get("/search", auth, async (req, res) => {
     try {
         const userInfo = req.user;
@@ -61,6 +62,29 @@ router.get("/search", auth, async (req, res) => {
         handleError(res, error.status || 400, 'router.get("/orders/search?customerId=")', error.message);
     }
 });
+router.get("/my-orders/:id", auth, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userInfo = req.user;
+        if (userInfo._id != id && !userInfo.isAdmin) {
+            return handleError(res, 403, 'router.get("/my-orders/:id")', "Only login user or admin can get my orders");
+        }
+        let orders = await getMyOrders(userInfo._id);
+        res.send(orders);
+    } catch (error) {
+        handleError(res, error.status || 400, 'router.get("/my-orders/:id")', error.message);
+    }
+});
+router.get("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        let order = await getOrder(id);
+        res.send(order);
+    } catch (error) {
+        handleError(res, error.status || 400, 'router.get("/orders/:id")', error.message);
+    }
+});
+
 router.put("/:id", auth, async (req, res) => {
     try {
         const userInfo = req.user;
@@ -109,19 +133,7 @@ router.delete("/:id", auth, async (req, res) => {
         handleError(res, error.status || 400, 'router.delete("/orders/:id")', error.message);
     }
 });
-router.get("/my-orders/:id", auth, async (req, res) => {
-    try {
-        const { id } = req.params;
-        const userInfo = req.user;
-        if (userInfo._id != id && !userInfo.isAdmin) {
-            return handleError(res, 403, 'router.get("/my-orders/:id")', "Only login user or admin can get my orders");
-        }
-        let orders = await getMyOrders(userInfo._id);
-        res.send(orders);
-    } catch (error) {
-        handleError(res, error.status || 400, 'router.get("/my-orders/:id")', error.message);
-    }
-});
+
 router.patch("/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;

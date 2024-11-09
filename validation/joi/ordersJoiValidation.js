@@ -15,6 +15,7 @@ const validateOrdersWithJoi = (order) => {
             })
             .required(),
         quantity: Joi.number().min(0).required(),
+        _id: Joi.string().hex().required(),
     });
     const cartSchema = Joi.array().items(schema).required();
     return cartSchema.validate(order);
