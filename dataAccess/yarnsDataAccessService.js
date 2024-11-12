@@ -41,6 +41,8 @@ const getYarnBySize = async (yarnSz) => {
 
 const updateYarn = async (yarnId, newYarn) => {
     try {
+        console.log("updateYarn. newYarn:", newYarn);
+
         let yarn = await YarnModel.findByIdAndUpdate(yarnId, newYarn);
         return yarn;
     } catch (error) {
