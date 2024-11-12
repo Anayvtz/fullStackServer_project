@@ -43,7 +43,15 @@ const updateYarn = async (yarnId, newYarn) => {
     try {
         console.log("updateYarn. newYarn:", newYarn);
 
-        let yarn = await YarnModel.findByIdAndUpdate(yarnId, newYarn);
+        let yarn = await YarnModel.findById(yarnId);
+        yarn.title = newYarn.title;
+        yarn.subtitle = newYarn.subtitle;
+        yarn.description = newYarn.description;
+        yarn.yarnSize = newYarn.yarnSize;
+        yarn.quantityInStock = newYarn.quantityInStock;
+        yarn.image.alt = newYarn.image.alt;
+        yarn.price = newYarn.price;
+        yarn.save();
         return yarn;
     } catch (error) {
         return createError("updateYarn", "Mongoose", error);
