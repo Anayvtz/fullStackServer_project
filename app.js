@@ -9,12 +9,14 @@ const registerAdminUser = require("./initialData/registerAdminUser");
 const generateYarns = require("./initialData/generateYarns");
 const { getUsers } = require("./dataAccess/usersDataAccessService");
 const { getYarns } = require("./dataAccess/yarnsDataAccessService");
-
+const multer = require('multer');
 require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 8185;
 const path = require('path');
+
+
 
 // Serve static files (like images) from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
