@@ -1,5 +1,6 @@
 const OrdersModel = require("../DB/mongodb/models/Orders");
 const { createError } = require("../utils/handleErrors");
+const { getStock, findStockByYarnId, updateStock } = require("./stockDataAccessService");
 
 const createOrder = async (newOrder) => {
     try {
@@ -7,6 +8,11 @@ const createOrder = async (newOrder) => {
         let order = new OrdersModel(newOrder);
         order.status = "inprocess";
         order = await order.save();
+        order.yarns.map(async (yarn) => {
+            let stock = await findStockByYarnId(yarn.yarnId);
+            stock.quantity -= yarn.quantity;
+            await updateStock(stock?._id, stock);
+        })
         return order;
     } catch (error) {
         return createError("createOrder", "Mongoose", error);
