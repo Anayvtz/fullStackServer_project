@@ -14,7 +14,10 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 8185;
+const path = require('path');
 
+// Serve static files (like images) from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(corsmiddleware);
 app.use(express.json());
 

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const STRING_VALIDATION = require("../helpers/stringValidation");
 const IMAGE_VALIDATION = require("../helpers/imageValidation");
+const validator = require('validator');
 
 const yarnSchema = new mongoose.Schema({
     title: STRING_VALIDATION,
@@ -17,14 +18,7 @@ const yarnSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        url: {
-            type: String,
-            trim: true,
-            lowercase: true,
-            match: RegExp(
-                /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/
-            ),
-        },
+        imageurl: STRING_VALIDATION,
         alt: STRING_VALIDATION
     },
     price: Number

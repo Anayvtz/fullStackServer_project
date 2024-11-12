@@ -3,7 +3,7 @@ const { getUser } = require("../dataAccess/usersDataAccessService")
 const normalizeOrder = async (userId, rawOrder) => {
     let user = await getUser(userId);
     return {
-        yarn: rawOrder.map(item => ({ ...item })),
+        yarns: rawOrder.map(item => ({ ...item })),
         customerId: userId,
         customerName: user.name,
         customerAddress: user.address,

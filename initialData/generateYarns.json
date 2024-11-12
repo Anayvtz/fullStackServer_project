@@ -6,7 +6,7 @@
         "yarnSize": 4,
         "quantityInStock": 10,
         "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTf-JroeWhnIUJIXN2gOy7eJ7f9mCnylz9GCj3tFBm5JJloyXlO0FUytLu5X5lv87PMAPdrF1jGf0_KmyndKY6EQ_XEJY3h-FoSO7PE0Yef6P4xHk2mdodM-g&usqp=CAc",
+            "imageurl": "/images/lightBlue3Yarn.png",
             "alt": "yarn image"
         },
         "price": 20
@@ -18,7 +18,7 @@
         "yarnSize": 4,
         "quantityInStock": 12,
         "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcStDtRoFVM5UOUD54hBFJkjuGIDNfgI4LFJ05_lNrG-5_RWcG-zQZWCbhcfTethj1lB5HzyMN-a7DvMJxf1VHrZk8pjMUbfkDogEfuvlOjrZtrKBFFfB6A7aiH22XoaKdEjtufCaLU&usqp=CAc",
+            "imageurl": "/images/whiteYarn.png",
             "alt": "yarn image"
         },
         "price": 30
@@ -30,7 +30,7 @@
         "yarnSize": 4,
         "quantityInStock": 30,
         "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRxOC94w7v2Tn0XSZ9dshrwoKj9blPavucWGspjCb6SSGxh9iKNVeVdCbcOGOuDRE-_9WtOVqxyLFwhUlF3PRXLZkIyCAyF5tdIgGv_1B3UAsortHbKS1PbbJRUyGaZgpCeqSdVrprW&usqp=CAc",
+            "imageurl": "/images/grey2Yarn.png",
             "alt": "yarn image"
         },
         "price": 15
@@ -42,7 +42,7 @@
         "yarnSize": 4,
         "quantityInStock": 40,
         "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQhp04hMOp2z-Mrb00S5wRbZn46P7sTrXRCxC_F4jFaQ6EG0U1HI-hf3_8xQl44G6E5vVqUKBbZK3D7yIsxyxwU5M3C94mPg0x5MWI5jNvf5U6-4oFcV4aJ5-s&usqp=CAc",
+            "imageurl": "/images/blueYarn.png",
             "alt": "yarn image"
         },
         "price": 25
@@ -54,7 +54,7 @@
         "yarnSize": 7,
         "quantityInStock": 40,
         "image": {
-            "url": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSLqAp4Zq2trAfcW_xm5BwWgGgv72PRsdRF7ZzNjlGY2m_f3tDnQrWpYgJSnA-4YyDeAT3AQmhZeBv_LaNcH04XcOXAzHI-TTKmDAGLud9UguRQrzMAQj7kDTVuQ4JVopJVz9Q1HWI&usqp=CAc",
+            "imageurl": "/images/creamYarn.png",
             "alt": "yarn image"
         },
         "price": 40
@@ -66,7 +66,7 @@
         "yarnSize": 7,
         "quantityInStock": 40,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRiHp5COTQBYDUmQbP6w9pB5zQTpvK5SIxrnxvMh-AnOZtZI9XOws9nSmijX3mVIeIeRCZ7bI8hCa6fCBfFBdzQJQ28CSbCrW0QpXhozyBQcOc-1R43w4ixWNfLUDv7JMEGoaGjWOFBcQ&usqp=CAc",
+            "imageurl": "/images/fucsiaYarn.png",
             "alt": "yarn image"
         },
         "price": 23
@@ -78,7 +78,7 @@
         "yarnSize": 7,
         "quantityInStock": 40,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR4JJG48RGTriEtsbyEYacZHkB2NJmX4uK6p0_RKThomlbf5h2hV6Vi4D7uwRmVP8upbhYYhX8hR1kqKBsFr2PDCBpKf0je7by6oPJaXhGEZxLART8a1C4IwgHEZqTvfhstlVO_szPN&usqp=CAc",
+            "imageurl": "/images/yellowYarn.png",
             "alt": "yarn image"
         },
         "price": 27
@@ -90,7 +90,7 @@
         "yarnSize": 0,
         "quantityInStock": 40,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQbQ5U34K-zViNqmMc3A8Cv4rmGCC1u9Ml2dE1s4txv6NH_Fa2bPAkCYNfzMrV2Knz5c530LVHj2Ljd4RmwNaK1_jBFXK0Md2pANyEazXyDUDUS4G_583rjf39f8jeF9XYzPh9pSXWFw3s&usqp=CAc",
+            "imageurl": "/images/lightBlue2Yarn.png",
             "alt": "yarn image"
         },
         "price": 32
@@ -102,7 +102,7 @@
         "yarnSize": 0,
         "quantityInStock": 100,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQXWgt9CQNlmgHcnwx820IAKMUSuz2t6Rv9pfKdQDDOkwDoOVGx36X-87rNlHBL9AiKruseWPgKnz99i0vKcfh4t3sglmmpWuZPLEcOtPrwYXvMmRPtPHyG9-P4oSEi9HN3Ab-bF8jW_ko&usqp=CAc",
+            "imageurl": "/images/pinkYarn.png",
             "alt": "yarn image"
         },
         "price": 37
@@ -114,7 +114,7 @@
         "yarnSize": 1,
         "quantityInStock": 50,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuTOm-LeRkWEL4abRzjlXhYwURNWU5a1qNHQ&s",
+            "imageurl": "/images/multiColorVibrantYarn.png",
             "alt": "yarn image"
         },
         "price": 42
@@ -126,7 +126,7 @@
         "yarnSize": 1,
         "quantityInStock": 50,
         "image": {
-            "url": "https://www.premieryarns.com/cdn/shop/products/2052-02_Dragonfruit_ball_600x.jpg?v=1718399947",
+            "imageurl": "/images/multiColorYarn.png",
             "alt": "yarn image"
         },
         "price": 43
@@ -138,7 +138,7 @@
         "yarnSize": 1,
         "quantityInStock": 50,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG40QZGGt6t_eptC5z6HVV5MGXW8VmLEWmHw&s",
+            "imageurl": "/images/greyYarn.png",
             "alt": "yarn image"
         },
         "price": 19
@@ -150,7 +150,7 @@
         "yarnSize": 3,
         "quantityInStock": 50,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxpGza69_dtGDVPU05J10EGL6nn3VsopnWYQ&s",
+            "imageurl": "/images/turkizYarn.png",
             "alt": "yarn image"
         },
         "price": 33
@@ -162,7 +162,7 @@
         "yarnSize": 3,
         "quantityInStock": 50,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQdYVTUWfANcgS6WvRSTiba4ifLMxYroZcdg&s",
+            "imageurl": "/images/lightBlueYarn.png",
             "alt": "yarn image"
         },
         "price": 26

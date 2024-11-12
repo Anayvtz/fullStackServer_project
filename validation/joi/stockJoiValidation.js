@@ -7,9 +7,8 @@ const validateStockWithJoi = (stock) => {
         yarnId: Joi.string().hex().required(),
         image: Joi.object()
             .keys({
-                url: Joi.string()
-                    .ruleset.regex(urlRegex)
-                    .rule({ message: 'yarn.image "url" must be a valid url' })
+                imageurl: Joi.string()
+                    .min(2)
                     .required(""),
                 alt: Joi.string().min(2).max(256).allow(""),
             })

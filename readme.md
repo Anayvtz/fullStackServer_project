@@ -301,3 +301,60 @@ the stock
  --------------------
  3.1 update-stock response
  --------------------------
+
+
+## Orders:
+
+
+which user        | header         |  command  | url                             |  body  |action
+============================================================================================
+admin             | x-auth-token   | GET       |http://localhost:8185/orders     | N      | get-all-orders
+--------------------------------------------------------------------------------------------
+login-user&admin  | x-auth-token   | POST      |http://localhost:8185/orders/user-id | Y | create-order   
+
+## Orders Commands Body & Response
+=================================
+1.1 get-all-orders body
+---------------------------------
+none
+---------------------------------
+1.2 get-all-orders response
+---------------------------------
+the array of orders
+---------------------------------
+2.1 create-order body
+---------------------------------
+the array of cart. for ex.
+[
+    {
+        "image": {
+            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gctf-jroewhniujixn2goy7ej7f9mcnylz9gcj3tfbm5jjloyxlo0fuytlu5x5lv87pmapdrf1jgf0_kmyndky6eq_xejy3h-foso7pe0yef6p4xhk2mdodm-g&usqp=cac",
+            "alt": "yarn image"
+        },
+        "yarnId": "672d78e0cdc4805481651ba7",
+        "quantity": 4,
+        "_id": "672d86f6cdc4805481651bed"
+    },
+    {
+        "image": {
+            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gcrxoc94w7v2tn0xsz9dshrwokj9blpavucwgspjcb6ssgxh9iknvevdcbcogoudre-_9wtovqxylfwhulf3prxlzkiycayf5tdiggv_1b3uasorthbks1pbbjruygazgpceqsdvrprw&usqp=cac",
+            "alt": "yarn image"
+        },
+        "yarnId": "672d78e0cdc4805481651bb0",
+        "quantity": 4,
+        "_id": "672d9116cdc4805481651c28"
+    },
+    {
+        "image": {
+            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gcqhp04hmop2z-mrb00s5wrbzn46p7strxrcxc_f4jfaq6eg0u1hi-hf3_8xql44g6e5vvqukbbzk3d7yisxyxwu5m3c94mpg0x5mwi5jnvf5u6-4ofcv4aj5-s&usqp=cac",
+            "alt": "yarn image"
+        },
+        "yarnId": "672d78e0cdc4805481651bb4",
+        "quantity": 1,
+        "_id": "672d912fcdc4805481651c36"
+    }
+]
+-----------------------------------
+2.2 create-order response
+-----------------------------------
+the order. for ex.

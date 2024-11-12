@@ -15,10 +15,10 @@ const generateYarns = async () => {
                 return console.log("generateYarns: Validation error: " + errorMessage);
             }
 
-            let yarn = await normalizeYarn(yarns[i]);
-            yarn = await createYarn(yarn);
-            console.log("yarn.image.url:" + yarn.image.url)
-            let stock = { yarnId: yarn._id.toString(), image: { url: yarn.image.url, alt: yarn.image.alt }, quantity: yarn.quantityInStock };
+
+            let yarn = await createYarn(yarns[i]);
+            console.log("yarn.image.url:" + yarn.image.imageurl)
+            let stock = { yarnId: yarn._id.toString(), image: { imageurl: yarn.image.imageurl, alt: yarn.image.alt }, quantity: yarn.quantityInStock };
             const errorMsg = validateStock(stock);
             if (errorMsg !== "") {
                 return console.log("generateYarns: Validation error: " + errorMsg);

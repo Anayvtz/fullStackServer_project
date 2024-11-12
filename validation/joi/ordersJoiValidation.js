@@ -7,15 +7,15 @@ const validateOrdersWithJoi = (order) => {
         yarnId: Joi.string().hex().required(),
         image: Joi.object()
             .keys({
-                url: Joi.string()
-                    .ruleset.regex(urlRegex)
-                    .rule({ message: 'yarn.image "url" must be a valid url' })
+                imageurl: Joi.string()
+                    .min(2)
                     .required(""),
                 alt: Joi.string().min(2).max(256).allow(""),
             })
             .required(),
         quantity: Joi.number().min(0).required(),
         _id: Joi.string().hex().required(),
+        price: Joi.number().min(0).required()
     });
     const cartSchema = Joi.array().items(schema).required();
     return cartSchema.validate(order);

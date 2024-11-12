@@ -12,10 +12,7 @@ const validateYarnWithJoi = (yarn) => {
         quantityInStock: Joi.number().min(0).required(),
         image: Joi.object()
             .keys({
-                url: Joi.string()
-                    .ruleset.regex(urlRegex)
-                    .rule({ message: 'yarn.image "url" must be a valid url' })
-                    .required(""),
+                imageurl: Joi.string().min(2).required(""),
                 alt: Joi.string().min(2).max(256).allow(""),
             })
             .required(),
