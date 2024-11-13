@@ -24,19 +24,19 @@ router.post("/", auth, async (req, res) => {
         if (!userInfo.isAdmin) {
             return handleError(res, 403, 'post("/yarns/")', "Only admin user can create new yarn");
         }
-
+        console.log("router.post('/yarns/ req.body.image", req.body.image);
         const errorMessage = validateYarn(req.body);
         if (errorMessage !== "") {
-            return handleError(res, 400, 'post("/yarns/")', "Validation error: " + errorMessage);
+            return handleError(res, 400, 'post("/yarns/") validateYarn', "Validation error: " + errorMessage);
         }
 
         let yarn = await normalizeYarn(req.body);
         yarn = await createYarn(yarn);
 
-        let stock = { yarnId: yarn._id.toString(), image: { url: yarn.image.url, alt: yarn.image.alt }, quantity: yarn.quantityInStock };
+        let stock = { yarnId: yarn._id.toString(), image: { imageurl: yarn.image.imageurl, alt: yarn.image.alt }, quantity: yarn.quantityInStock };
         const errorMsg = validateStock(stock);
         if (errorMsg !== "") {
-            return handleError(res, 400, 'post("/yarns/")', "Validation error: " + errorMsg);
+            return handleError(res, 400, 'post("/yarns/") validateStock', "Validation error: " + errorMsg);
         }
         stock = await createStock(stock);
 

@@ -9,10 +9,10 @@ const validateStockWithJoi = (stock) => {
             .keys({
                 imageurl: Joi.string()
                     .min(2)
-                    .required(""),
+                    .allow(""),
                 alt: Joi.string().min(2).max(256).allow(""),
             })
-            .required(),
+            .allow(),
         quantity: Joi.number().min(0).required(),
     });
     return schema.validate(stock);
