@@ -12,7 +12,7 @@ const validateYarnWithJoi = (yarn) => {
         quantityInStock: Joi.number().min(0).required(),
         image: Joi.object()
             .keys({
-                imageurl: Joi.string().min(2).allow(""),
+                imageurl: Joi.string().allow(""),
                 alt: Joi.string().min(2).max(256).allow(""),
             })
             .allow(),

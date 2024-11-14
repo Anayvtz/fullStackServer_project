@@ -18,7 +18,7 @@ const yarnSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        imageurl: STRING_VALIDATION,
+        imageurl: String,
         alt: STRING_VALIDATION
     },
     price: Number

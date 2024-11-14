@@ -8,7 +8,6 @@ const validateStockWithJoi = (stock) => {
         image: Joi.object()
             .keys({
                 imageurl: Joi.string()
-                    .min(2)
                     .allow(""),
                 alt: Joi.string().min(2).max(256).allow(""),
             })

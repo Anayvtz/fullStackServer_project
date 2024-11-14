@@ -39,15 +39,18 @@ const getUsers = async () => {
 
 const loginUser = async (email, password) => {
     try {
+        console.log("loginUser email:", email);
+        console.log("loginUser password:", password);
+
         const userFromDb = await UserModel.findOne({ email });
 
         if (!userFromDb) {
-            const error = new Error("Invalid email or password");
+            const error = new Error("Invalid email or password no userFromDb");
             error.status = 401;
             return createError("loginUser", "Authentication", error);
         }
         if (!comaprePasswords(password, userFromDb.password)) {
-            const error = new Error("Invalid email or password");
+            const error = new Error("Invalid email or password. compare password failed");
             error.status = 401;
             return createError("loginUser", "Authentication", error);
         }

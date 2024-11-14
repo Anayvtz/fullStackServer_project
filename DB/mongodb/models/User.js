@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema({
     Cart: [{
         yarnId: mongoose.Schema.Types.ObjectId,
         image: {
-            imageurl: STRING_VALIDATION,
-            alt: STRING_VALIDATION
+            imageurl: String,
+            alt: STRING_VALIDATION,
         },
         quantity: Number,
         price: Number

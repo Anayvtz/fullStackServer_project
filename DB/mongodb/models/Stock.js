@@ -11,7 +11,7 @@ const stockSchema = new mongoose.Schema({
     },
 
     image: {
-        imageurl: STRING_VALIDATION,
+        imageurl: String,
         alt: STRING_VALIDATION
     },
     quantity: Number

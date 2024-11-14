@@ -16,7 +16,8 @@ const ordersSchema = new mongoose.Schema({
             imageurl: STRING_VALIDATION,
             alt: STRING_VALIDATION
         },
-        quantity: Number
+        quantity: Number,
+        price: Number
     }],
     customerId: mongoose.Schema.Types.ObjectId,
     customerName: NAME_VALIDATION,
