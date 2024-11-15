@@ -2,7 +2,7 @@ const express = require("express");
 const { handleError } = require("../utils/handleErrors");
 const auth = require("../authetication/authService");
 const { validateUserRegistration, validateUserLogin } = require("../validation/userValidationService");
-const { registerUser, loginUser, getUser, editUser, changeIsBusiness, deleteUser, getUsers, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity, deleteUserCart } = require("../dataAccess/usersDataAccessService");
+const { registerUser, loginUser, getUser, editUser, changeIsBusiness, deleteUser, getUsers, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity, deleteUserCart, getUserByEmail } = require("../dataAccess/usersDataAccessService");
 
 const router = express.Router();
 
@@ -50,6 +50,26 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.get("/search", auth, async (req, res) => {
+    try {
+        const userInfo = req.user;
+        const { email } = req.query;
+
+        if (!userInfo.isAdmin) {
+            return handleError(
+                res,
+                403,
+                'router.get("/users/search?email=")',
+                "Authorization Error: Only admin can get user info by email"
+            );
+        }
+
+        let user = await getUserByEmail(email);
+        res.send(user);
+    } catch (error) {
+        return handleError(res, error.status || 400, 'router.get("/users/:id")', error.message);
+    }
+});
 router.get("/:id", auth, async (req, res) => {
     try {
         const userInfo = req.user;

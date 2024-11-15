@@ -37,6 +37,14 @@ const getUsers = async () => {
     }
 };
 
+const getUserByEmail = async (email) => {
+    try {
+        let user = await UserModel.find({ email: email });
+        return user;
+    } catch (error) {
+        return createError("getUserByEmail", "Mongoose", error);
+    }
+}
 const loginUser = async (email, password) => {
     try {
         console.log("loginUser email:", email);
@@ -176,4 +184,4 @@ const deleteUserCart = async (id) => {
         return createError("deleteUserCart", "Mongoose:", error);
     }
 }
-module.exports = { registerUser, getUser, getUsers, loginUser, editUser, changeIsBusiness, deleteUser, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity, deleteUserCart };
+module.exports = { registerUser, getUser, getUsers, loginUser, editUser, changeIsBusiness, deleteUser, addYarnToUserCart, removeYarnFromUserCart, getUserCart, getUserCartEntity, deleteUserCart, getUserByEmail };
