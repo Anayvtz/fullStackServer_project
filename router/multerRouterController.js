@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require('multer');
 const path = require('path'); // Import the path module
 const YarnModel = require("../DB/mongodb/models/Yarn");
+const { findStockByYarnId, updateStock, updateStockImage } = require("../dataAccess/stockDataAccessService");
 
 const router = express.Router();
 
@@ -43,7 +44,12 @@ router.post('/upload-image', upload.single('image'), async (req, res) => {
         if (!updatedYarn) {
             return res.status(404).send({ error: 'Yarn not found' });
         }
+        let stock = await findStockByYarnId(yarnId);
+        console.log("after findStockByYarnId stock.image:", stock.image)
+        stock.image.imageurl = imageUrl;
+        stock.image.alt = updatedYarn.image.alt;
 
+        await updateStockImage(stock._id, stock)
         // Send the updated image URL back in the response
         res.send({ imageUrl });
     } catch (error) {

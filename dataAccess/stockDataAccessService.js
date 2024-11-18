@@ -4,7 +4,10 @@ const { updateYarnQuantity } = require("./yarnsDataAccessService");
 
 const createStock = async (newStock) => {
     try {
+        console.log("createStock. stock.image:", newStock.image)
         let stock = new StockModel(newStock);
+        console.log("createStock.after stockmodel. stock.image: ", stock.image);
+
         stock = await stock.save();
         return stock;
     } catch (error) {
@@ -34,6 +37,7 @@ const updateStock = async (stockId, updStock) => {
     try {
         let stock = await StockModel.findById(stockId);
         stock.quantity = updStock.quantity;
+
         stock = await stock.save();
         let { yarnId, quantity } = stock;
         let yarn = updateYarnQuantity(yarnId, quantity);
@@ -42,7 +46,19 @@ const updateStock = async (stockId, updStock) => {
         return createError("updateStock", "Mongoose", error);
     }
 };
+const updateStockImage = async (stockId, updStock) => {
+    try {
+        let stock = await StockModel.findById(stockId);
+        stock.image.imageurl = updStock.image.imageurl;
+        stock.image.alt = updStock.image.alt;
+        console.log("updateStock. stock.image:", stock.image);
 
+        stock = await stock.save();
+        return stock;
+    } catch (error) {
+        return createError("updateStock", "Mongoose", error);
+    }
+};
 const deleteStock = async (stockId) => {
     try {
         let stock = await StockModel.findByIdAndDelete(stockId);
@@ -61,9 +77,11 @@ const findStockByYarnId = async (yarnId) => {
         if (!stock) return createError("findStockByYarnId", "stockModel.find", "stock is null. not found");
         console.log("stock._id:" + stock._id);
         console.log("stock.yarnId:" + stock.yarnId);
+        console.log("stock.image:", stock.image);
+
         return stock;
     } catch (error) {
         return createError("findStockByYarnId", "Mongoose", error);
     }
 }
-module.exports = { createStock, getStocks, getStock, updateStock, deleteStock, findStockByYarnId }
+module.exports = { createStock, getStocks, getStock, updateStock, deleteStock, findStockByYarnId, updateStockImage }

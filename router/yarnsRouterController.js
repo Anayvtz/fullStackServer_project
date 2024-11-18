@@ -32,8 +32,9 @@ router.post("/", auth, async (req, res) => {
 
         let yarn = await normalizeYarn(req.body);
         yarn = await createYarn(yarn);
+        console.log("after createYarn. yarn.image:", yarn.image);
 
-        let stock = { yarnId: yarn._id.toString(), image: { imageurl: yarn.image.imageurl, alt: yarn.image.alt }, quantity: yarn.quantityInStock };
+        let stock = { yarnId: yarn._id.toString(), image: { imageurl: yarn.image.imageurl || "/images/whiteYarn.png", alt: yarn.image.alt || "image alt" }, quantity: yarn.quantityInStock };
         const errorMsg = validateStock(stock);
         if (errorMsg !== "") {
             return handleError(res, 400, 'post("/yarns/") validateStock', "Validation error: " + errorMsg);
