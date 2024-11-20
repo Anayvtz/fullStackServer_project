@@ -30,10 +30,12 @@ Commands
 
 
 ## Users Commands Body & Response
- =================================
- 1. register
- ------------
- {
+
+ # 1. Register
+--------------
+
+```json
+{
   "name": {
     "first": "Ell",
     "middle": "",
@@ -55,8 +57,9 @@ Commands
     "zip": 8920435
   }
 }
-----------------------
-1.1 register response
+
+
+# 1.1 register response
 ----------------------
 {
     "name": {
@@ -67,44 +70,45 @@ Commands
     "email": "anayavetz3@gmail.com",
     "_id": "670a198c0af07ff971a0a1c6"
 }
----------------------------------------
-2. login body
--------------
+
+# 2. login body
+---------------
 {
   "email": "admin@gmail.com",
   "password": "<password>"
 }
--------------------
-2.1 login response
-------------------
+
+# 2.1 login response
+--------------------
 x-auth-token
------------------------------------------
-3. get-users body
------------------
+
+# 3. get-users body
+--------------------
 none
------------------------
-3.1 get-users response
------------------------
+
+# 3.1 get-users response
+------------------------
 list of all users info
------------------------------------------
-4. get-user body
-----------------
-none
-----------------------
-4.1 get-user response
-----------------------
-user info
-------------------------------------------
-5. edit-user body
+
+# 4. get-user body
 ------------------
+none
+
+# 4.1 get-user response
+------------------------
+user info
+
+# 5. edit-user body
+--------------------
 updated registered  user info
------------------------
-5.1 edit-user response
+
+# 5.1 edit-user response
 -----------------------
 the updated user info
--------------------------------------------
-6. add-yarn-to-cart body
-------------------------
+
+# 6. add-yarn-to-cart body
+--------------------------
+```json
 {
     "yarnId": "yarn-id",
     "image": {
@@ -113,35 +117,35 @@ the updated user info
         },
     "quantity": some-number
 }
-------------------------------
-6.1 add-yarn-to-cart response
-------------------------------
+
+# 6.1 add-yarn-to-cart response
+--------------------------------
 the cart. i.e. array of yarn-id and quantity
---------------------------------------------
-7. rmv-yarn-from-cart body
+
+# 7. rmv-yarn-from-cart body
 --------------------------
 none
--------------------------------
-7.1 rmv-yarn-from-cart response
+
+# 7.1 rmv-yarn-from-cart response
 -------------------------------
 the updated cart
----------------------------------------------
-8. toggle-is-business body
+
+# 8. toggle-is-business body
 ---------------------------
 none
---------------------------------
-8.1 toggle-is-business response
+
+# 8.1 toggle-is-business response
 --------------------------------
 the updated user info
-----------------------------------------------
-9. delete-user body
+
+# 9. delete-user body
 --------------------
 none
--------------------------
-9.1 delete-user response
+
+# 9.1 delete-user response
 -------------------------
 the deleted user info
--------------------------
+
 
 
 ##################################################
