@@ -181,7 +181,7 @@ router.delete("/:id/cart/:yarnId", auth, async (req, res) => {
 router.delete("/:id/cart", auth, async (req, res) => {
     try {
         const userInfo = req.user;
-        const { id, yarnId } = req.params;
+        const { id } = req.params;
 
         if (userInfo._id !== id) {
             return handleError(

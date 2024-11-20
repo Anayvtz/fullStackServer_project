@@ -23,6 +23,10 @@ Commands
 | Login User            | x-auth-token  | DELETE  | http://localhost:8185/users/user-id/cart/yarn-id | N | Remove Yarn from Cart |
 | Admin                 | x-auth-token  | PATCH   | http://localhost:8185/users/user-id       | N    | Toggle Is Business    |
 | Admin                 | x-auth-token  | DELETE  | http://localhost:8185/users/user-id       | N    | Delete User           |
+| Login User            | x-auth-token | DELETE   | http://localhost:8185/users/user-id/cart          | N    | delete-user-cart      |
+| Login User            | x-auth-token  | GET     | http://localhost:8185/users/user-id/cart/yarn-id       | N    | get-user-cart-entity  |
+| Admin                 | x-auth-token  | GET     | http://localhost:8185/users/search?email=user-email | N | get-user-by-email     |
+| Login User            | x-auth-token  | GET     | http://localhost:8185/users/user-id/cart | N | get-user-cart
 
 
 ## Users Commands Body & Response
