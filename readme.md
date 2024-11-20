@@ -57,10 +57,11 @@ Commands
     "zip": 8920435
   }
 }
-
+```
 
 # 1.1 register response
 ----------------------
+```json
 {
     "name": {
         "first": "ell",
@@ -70,13 +71,16 @@ Commands
     "email": "anayavetz3@gmail.com",
     "_id": "670a198c0af07ff971a0a1c6"
 }
+```
 
 # 2. login body
 ---------------
+```json
 {
   "email": "admin@gmail.com",
   "password": "<password>"
 }
+```
 
 # 2.1 login response
 --------------------
@@ -101,6 +105,30 @@ user info
 # 5. edit-user body
 --------------------
 updated registered  user info
+```json
+{
+  "name": {
+    "first": "Ell",
+    "middle": "",
+    "last": "Vis"
+  },
+  "phone": "0512345567",
+  "email": "anayavetz3@gmail.com",
+  "password": "<password>",
+  "image": {
+    "url": "https://www.image.com",
+    "alt": "image"
+  },
+  "address": {
+    "state": "IL",
+    "country": "Israel",
+    "city": "Arad",
+    "street": "Shoham",
+    "houseNumber": 5,
+    "zip": 8920435
+  }
+}
+```
 
 # 5.1 edit-user response
 -----------------------
@@ -117,11 +145,23 @@ the updated user info
         },
     "quantity": some-number
 }
+```
 
 # 6.1 add-yarn-to-cart response
 --------------------------------
 the cart. i.e. array of yarn-id and quantity
-
+```json
+[
+    {
+        "yarnId": "673497b0203e939c19c601b8",
+        "image": {
+            "alt": "yarn image"
+        },
+        "quantity": 3,
+        "_id": "673dc0bb3bd16718bce963de"
+    }
+]
+```
 # 7. rmv-yarn-from-cart body
 --------------------------
 none
