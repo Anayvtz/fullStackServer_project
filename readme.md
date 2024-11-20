@@ -12,26 +12,18 @@ Commands
 ## Users:
 
 
-which user        | header         |  command  | url                             |  body  |action
-============================================================================================
-    --            |  --            | POST      | http://localhost:8185/users     | Y |register
---------------------------------------------------------------------------------------------
-    --            |  --            | POST      | http://localhost:8185/users/login | Y | login
---------------------------------------------------------------------------------------------
-   admin          | x-auth-token   | GET       | http://localhost:8185/users       | N | get-users
---------------------------------------------------------------------------------------------
-login-user&admin  | x-auth-token   | GET       | http://localhost:8185/users/user-id | N | get-user
---------------------------------------------------------------------------------------------
- login-user       | x-auth-token   | PUT       | http://localhost:8185/users/user-id | Y | edit-user
---------------------------------------------------------------------------------------------
- login-user       | x-auth-token   | PUT       | http://localhost:8185/users/user-id/cart| Y | add-yarn-to-cart
- -------------------------------------------------------------------------------------------
- login-user       | x-auth-token   | DELETE    | http://localhost:8185/users/user-id/cart/yarn-id | N | rmv-yarn-from-cart
- -------------------------------------------------------------------------------------------
- admin            | x-auth-token   | PATCH     | http://localhost:8185/users/user-id | N | toggle-is-business
- -------------------------------------------------------------------------------------------
- admin            | x-auth-token   | DELETE    | http://localhost:8185/users/user-id | N | delete-user
- -------------------------------------------------------------------------------------------
+| Which User            | Header        | Command | URL                                       | Body | Action                |
+|-----------------------|---------------|---------|-------------------------------------------|------|-----------------------|
+| --                    | --            | POST    | http://localhost:8185/users               | Y    | Register              |
+| --                    | --            | POST    | http://localhost:8185/users/login         | Y    | Login                 |
+| Admin                 | x-auth-token  | GET     | http://localhost:8185/users               | N    | Get Users             |
+| Login User & Admin    | x-auth-token  | GET     | http://localhost:8185/users/user-id       | N    | Get User              |
+| Login User            | x-auth-token  | PUT     | http://localhost:8185/users/user-id       | Y    | Edit User             |
+| Login User            | x-auth-token  | PUT     | http://localhost:8185/users/user-id/cart  | Y    | Add Yarn to Cart      |
+| Login User            | x-auth-token  | DELETE  | http://localhost:8185/users/user-id/cart/yarn-id | N | Remove Yarn from Cart |
+| Admin                 | x-auth-token  | PATCH   | http://localhost:8185/users/user-id       | N    | Toggle Is Business    |
+| Admin                 | x-auth-token  | DELETE  | http://localhost:8185/users/user-id       | N    | Delete User           |
+
 
 ## Users Commands Body & Response
  =================================
