@@ -60,6 +60,8 @@ router.patch("/:id", auth, async (req, res) => {
                 "Authorization Error: Only the user who is admin can update stock details"
             );
         }
+        console.log("stock router.patch/id. id:", id);
+        console.log("stock router.patch/id. updStock.yarnId:", updStock.yarnId);
 
         const errorMessage = validateStock(updStock);
         if (errorMessage !== "") {
