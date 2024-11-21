@@ -337,36 +337,35 @@ array of yarns of specified size
 ## stocks:
 
 
-which user        | header         |  command  | url                             |  body  |action
-============================================================================================
- --               | --             | GET       | http://localhost:8185/stocks/    | N      | get-stocks
- -------------------------------------------------------------------------------------------
- --               | --             | GET       | http://localhost:8185/stocks/stock-id | N | get-stock
- --------------------------------------------------------------------------------------------
- admin            | x-auth-token   | PUT       | http://localhost:8185/stocks/stock-id | Y | update-stock
- --------------------------------------------------------------------------------------------
+| Which User | Header        | Command | URL                                             | Body | Action            |
+|------------|---------------|---------|-------------------------------------------------|------|-------------------|
+| --         | --            | GET     | http://localhost:8185/stocks/                    | N    | get-stocks        |
+| --         | --            | GET     | http://localhost:8185/stocks/stock-id            | N    | get-stock         |
+| admin      | x-auth-token  | PATCH     | http://localhost:8185/stocks/stock-id            | Y    | update-stock-quantity      |
+
 
 
 ## Stocks Commands Body & Response
-=================================
-1. get-stocks body
--------------------
-none
--------------------
-1.1 get-stocks response
------------------------
-the stock info
------------------------
-2. get-stock body
------------------------
-none
------------------------
-2.1 get-stock response
------------------------
-the stock
+
+# 1. get-stocks body
 ---------------------
- 3. update-stock body
- --------------------
+none
+
+# 1.1 get-stocks response
+--------------------------
+the stocks info
+
+# 2. get-stock body
+-----------------------
+none
+
+# 2.1 get-stock response
+-------------------------
+the stock
+
+# 3. update-stock-quantity body
+ -------------------------------
+ ```json
  {
     "yarnId": "670b9b404fe113e367bc2362",
     "image": {
@@ -375,9 +374,14 @@ the stock
     },
     "quantity": 23
  }
- --------------------
- 3.1 update-stock response
+ ```
+
+# 3.1 update-stock response
  --------------------------
+the stock and yarn whose quantity was just updated
+
+
+***
 
 
 ## Orders:
