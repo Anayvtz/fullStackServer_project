@@ -227,35 +227,33 @@ the user cart (i.e array of items)
 
 ## yarns:
 
-which user        | header         |  command  | url                             |  body  |action
-============================================================================================
- --               | --             | GET       | http://localhost:8185/yarns/    | N      | get-yarns
----------------------------------------------------------------------------------------------
- admin            | x-auth-token   | POST      | http://localhost:8185/yarns     | Y      | create-yarn
----------------------------------------------------------------------------------------------
- --               | --             | GET       | http://localhost:8185/yarns/yarn-id | N  | get-yarn
----------------------------------------------------------------------------------------------
- admin            | x-auth-token   | PUT       | http://localhost:8185/yarns/yarn-id | Y  | update-yarn
----------------------------------------------------------------------------------------------
- admin            | x-auth-token   | DELETE    | http://localhost:8185/yarns/yarn-id | N  | delete-yarn
----------------------------------------------------------------------------------------------
- --               | --             | GET       | http://localhost:8185/yarns/search?size=yarn-size | N | get-yarn-by-size
- --------------------------------------------------------------------------------------------
+| Which User | Header        | Command | URL                                              | Body | Action             |
+|------------|---------------|---------|--------------------------------------------------|------|--------------------|
+| --         | --            | GET     | http://localhost:8185/yarns/                     | N    | get-yarns          |
+| admin      | x-auth-token  | POST    | http://localhost:8185/yarns                      | Y    | create-yarn        |
+| --         | --            | GET     | http://localhost:8185/yarns/yarn-id              | N    | get-yarn           |
+| admin      | x-auth-token  | PUT     | http://localhost:8185/yarns/yarn-id              | Y    | update-yarn        |
+| admin      | x-auth-token  | DELETE  | http://localhost:8185/yarns/yarn-id              | N    | delete-yarn        |
+| --         | --            | GET     | http://localhost:8185/yarns/search?size=yarn-size | N    | get-yarn-by-size   |
+
 
 
 
 ## Yarns Commands Body & Response
-=================================
-1. get-yarns body
------------------
+----------------------------------
+
+
+# 1. get-yarns body
+--------------------
 none
-------------------
-1.1 get-yarns response
------------------------
+
+# 1.1 get-yarns response
+------------------------
 array of created yarn body
+
+# 2. create-yarn body
 ---------------------
-2. create-yarn body
----------------------
+```json
 {
   "title": "beautiful light blue yarn" ,
     "subtitle": "weight 4 yarn",
@@ -267,18 +265,12 @@ array of created yarn body
         "alt": "yarn image"
     }
 }
------------------------------
-2.1 create-yarn response
+```
+
+# 2.1 create-yarn response
 --------------------------
-the created yarn
------------------
-3. get-yarn body
------------------
-none
------------------
-3.1 get-yarn response
-----------------------
 the created yarn and the created stock
+```json
 {
     "yarn": {
         "title": "beautiful pink yarn",
@@ -304,31 +296,42 @@ the created yarn and the created stock
         "__v": 0
     }
 }
-----------------------
-4. update-yarn body
+```
+
+# 3. get-yarn body
+------------------
+none
+
+# 3.1 get-yarn response
+------------------------
+the yarn
+
+# 4. update-yarn body
 ----------------------
 the created yarn body updated
------------------------------
-4.1 update-yarn response
--------------------------
+
+# 4.1 update-yarn response
+--------------------------
 the updated yarn and the updated stock
--------------------------
-5. delete-yarn body
+
+# 5. delete-yarn body
 -------------------------
 none
---------------------------
-5.1 delete-yarn response
+
+# 5.1 delete-yarn response
 --------------------------
 the deleted yarn and the deleted stock
---------------------------
-6. get-yarn-by-size body
+
+# 6. get-yarn-by-size body
 --------------------------
 none
---------------------------
-6.1 get-yarn-by-size response
+
+# 6.1 get-yarn-by-size response
 ------------------------------
 array of yarns of specified size
----------------------------------
+
+
+***
 
 
 ## stocks:
