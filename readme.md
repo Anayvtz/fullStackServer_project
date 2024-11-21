@@ -186,9 +186,43 @@ none
 -------------------------
 the deleted user info
 
+# 10. delete-user-cart body
+---------------------------
+none
+
+# 10.1 delete-user-cart response
+---------------------------------
+the deleted user cart (i.e array of items)
+
+# 11. get-user-cart-entity body
+-------------------------------
+none
+
+# 11.1 get-user-cart-entity response
+-------------------------------------
+a user-cart item
+
+# 12. get-user-by-email body
+-----------------------------
+none
+
+# 12.1 get-user-by-email response
+----------------------------------
+the user
+
+# 13. get-user-cart body
+------------------------
+none
+
+# 13.1 get-user-cart response
+------------------------------
+the user cart (i.e array of items)
 
 
-##################################################
+
+******
+
+
 
 
 ## yarns:
