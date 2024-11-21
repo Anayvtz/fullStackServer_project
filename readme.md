@@ -45,7 +45,7 @@ Commands
   "email": "anayavetz3@gmail.com",
   "password": "<password>",
   "image": {
-    "url": "https://www.image.com",
+    "imageurl": "https://www.image.com",
     "alt": "image"
   },
   "address": {
@@ -116,7 +116,7 @@ updated registered  user info
   "email": "anayavetz3@gmail.com",
   "password": "<password>",
   "image": {
-    "url": "https://www.image.com",
+    "imageurl": "https://www.image.com",
     "alt": "image"
   },
   "address": {
@@ -140,10 +140,11 @@ the updated user info
 {
     "yarnId": "yarn-id",
     "image": {
-            "url": "the-image-url",
+            "imageurl": "the-image-url",
             "alt": "yarn image"
         },
-    "quantity": some-number
+    "quantity": some-number,
+    "price": some-price
 }
 ```
 
@@ -158,7 +159,7 @@ the cart. i.e. array of yarn-id and quantity
             "alt": "yarn image"
         },
         "quantity": 3,
-        "_id": "673dc0bb3bd16718bce963de"
+        "price":20
     }
 ]
 ```
@@ -261,9 +262,10 @@ array of created yarn body
     "yarnSize": 4,
     "quantityInStock": 10,
     "image": {
-        "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTf-JroeWhnIUJIXN2gOy7eJ7f9mCnylz9GCj3tFBm5JJloyXlO0FUytLu5X5lv87PMAPdrF1jGf0_KmyndKY6EQ_XEJY3h-FoSO7PE0Yef6P4xHk2mdodM-g&usqp=CAc",
+        "imageurl": "/images/whiteYarn.png",
         "alt": "yarn image"
-    }
+    },
+    "price":20
 }
 ```
 
@@ -279,16 +281,17 @@ the created yarn and the created stock
         "yarnSize": 7,
         "quantityInStock": 40,
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:and9gcrm7vpmlnpx-vecdtvep5pwk1qtjrejpebenw&s",
+            "imageurl": "/images/lightBlue2Yarn.png",
             "alt": "yarn image"
         },
+        "price": 20,
         "_id": "670f9dee465d193c6191f5dc",
         "__v": 0
     },
     "stock": {
         "yarnId": "670f9dee465d193c6191f5dc",
         "image": {
-            "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:and9gcrm7vpmlnpx-vecdtvep5pwk1qtjrejpebenw&s",
+            "imageurl": "/images/whiteYarn.png",
             "alt": "yarn image"
         },
         "quantity": 40,
@@ -369,7 +372,7 @@ the stock
  {
     "yarnId": "670b9b404fe113e367bc2362",
     "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gctf-jroewhniujixn2goy7ej7f9mcnylz9gcj3tfbm5jjloyxlo0fuytlu5x5lv87pmapdrf1jgf0_kmyndky6eq_xejy3h-foso7pe0yef6p4xhk2mdodm-g&usqp=cac",
+            "imageurl": "/images/whiteYarn.png",
             "alt":"yarn image"
     },
     "quantity": 23
@@ -387,55 +390,147 @@ the stock and yarn whose quantity was just updated
 ## Orders:
 
 
-which user        | header         |  command  | url                             |  body  |action
-============================================================================================
-admin             | x-auth-token   | GET       |http://localhost:8185/orders     | N      | get-all-orders
---------------------------------------------------------------------------------------------
-login-user&admin  | x-auth-token   | POST      |http://localhost:8185/orders/user-id | Y | create-order   
+| Which User      | Header        | Command | URL                                                   | Body | Action                |
+|-----------------|---------------|---------|-------------------------------------------------------|------|-----------------------|
+| admin           | x-auth-token  | GET     | http://localhost:8185/orders                          | N    | get-all-orders        |
+| login-user      | x-auth-token  | POST    | http://localhost:8185/orders/user-id                  | Y    | create-order          |
+| --              | --            | GET     | http://localhost:8185/orders/order-id                 | N    | get-order             |
+| admin           | x-auth-token  | GET     | http://localhost:8185/orders/search?customerId=user-id| N    | get-order-by-customer |
+| login-user & admin | x-auth-token | PUT     | http://localhost:8185/orders/order-id                 | Y    | update-order          |
+| admin           | x-auth-token  | DELETE  | http://localhost:8185/orders/order-id                 | N    | delete-order          |
+| login-user & admin | x-auth-token | GET     | http://localhost:8185/orders/my-orders/user-id        | N    | get-my-orders         |
+| admin           | x-auth-token  | PATCH   | http://localhost:8185/orders/order-id                 | N    | update-order-status   |
+
 
 ## Orders Commands Body & Response
-=================================
-1.1 get-all-orders body
+----------------------------------
+
+# 1.1 get-all-orders body
 ---------------------------------
 none
----------------------------------
-1.2 get-all-orders response
+
+# 1.2 get-all-orders response
 ---------------------------------
 the array of orders
----------------------------------
-2.1 create-order body
+
+# 2.1 create-order body
 ---------------------------------
 the array of cart. for ex.
+```json
 [
     {
         "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gctf-jroewhniujixn2goy7ej7f9mcnylz9gcj3tfbm5jjloyxlo0fuytlu5x5lv87pmapdrf1jgf0_kmyndky6eq_xejy3h-foso7pe0yef6p4xhk2mdodm-g&usqp=cac",
+            "imageurl": "/images/lightBlue3Yarn.png",
             "alt": "yarn image"
         },
-        "yarnId": "672d78e0cdc4805481651ba7",
+        "yarnId": "673497b0203e939c19c601a8",
         "quantity": 4,
-        "_id": "672d86f6cdc4805481651bed"
-    },
-    {
-        "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gcrxoc94w7v2tn0xsz9dshrwokj9blpavucwgspjcb6ssgxh9iknvevdcbcogoudre-_9wtovqxylfwhulf3prxlzkiycayf5tdiggv_1b3uasorthbks1pbbjruygazgpceqsdvrprw&usqp=cac",
-            "alt": "yarn image"
-        },
-        "yarnId": "672d78e0cdc4805481651bb0",
-        "quantity": 4,
-        "_id": "672d9116cdc4805481651c28"
-    },
-    {
-        "image": {
-            "url": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:and9gcqhp04hmop2z-mrb00s5wrbzn46p7strxrcxc_f4jfaq6eg0u1hi-hf3_8xql44g6e5vvqukbbzk3d7yisxyxwu5m3c94mpg0x5mwi5jnvf5u6-4ofcv4aj5-s&usqp=cac",
-            "alt": "yarn image"
-        },
-        "yarnId": "672d78e0cdc4805481651bb4",
-        "quantity": 1,
-        "_id": "672d912fcdc4805481651c36"
+        "price": 20,
+        "_id": "67354e44e588dc70d20226a4"
     }
 ]
------------------------------------
-2.2 create-order response
------------------------------------
+```
+
+# 2.2 create-order response
+------------------------------
 the order. for ex.
+```json
+{
+    "yarns": [
+        {
+            "yarnId": "673497b0203e939c19c601a8",
+            "image": {
+                "imageurl": "/images/lightblue3yarn.png",
+                "alt": "yarn image"
+            },
+            "quantity": 4,
+            "price": 20,
+            "_id": "67354e44e588dc70d20226a4"
+        }
+    ],
+    "customerId": "67354bede588dc70d202269d",
+    "customerName": {
+        "first": "limor",
+        "middle": "ana",
+        "last": "yavetz"
+    },
+    "customerAddress": {
+        "state": "aaa",
+        "country": "aaa",
+        "city": "aaa",
+        "street": "aaa",
+        "houseNumber": 3,
+        "zip": 4935323
+    },
+    "customerEmail": "ana3@gmail.com",
+    "status": [
+        "inprocess"
+    ],
+    "_id": "673f0b0201ff41fa1d08c20a",
+    "createdAt": "2024-11-21T10:27:14.136Z",
+    "__v": 0
+}
+```
+# 3.1 get-order body
+--------------------
+none
+
+# 3.2 get-order response
+-------------------------
+the order
+
+# 4.1 get-order-by-customer body
+--------------------------------
+none
+
+# 4.2 get-order-by-customer response
+-------------------------------------
+the customer (i.e. user id) orders
+
+# 5.1 update-order body
+------------------------
+the created order body updated
+
+# 5.2 update-order response
+---------------------------
+the updated order
+
+# 6.1 delete-order body
+-----------------------
+none
+
+# 6.2 delete-order response
+----------------------------
+the deleted order
+
+# 7.1 get-my-orders body
+------------------------
+none
+
+# 7.2 get-my-orders response
+----------------------------
+the orders of that user (array of orders)
+
+# 8.1 update-order-status body
+---------------------------------
+none
+
+# 8.2 update-order-status response
+-----------------------------------
+the updated order
+
+***
+
+## multer:
+
+| Which User      | Header        | Command | URL                                                   | Body | Action                |
+|-----------------|---------------|---------|-------------------------------------------------------|------|-----------------------|
+--                | --            | POST     |http://localhost:8185/upload-image | | upload-images-from-react
+
+# 1.1 upload-images-from-react body
+------------------------------------
+recieves the file to be uploaded
+
+# 1.2 upload-images-from-react response
+----------------------------------------
+create the file locally under /public/images and saves the local path of imageurl in mongodb both in yarns table entry and in stocks table entry. return the imageurl local path.
