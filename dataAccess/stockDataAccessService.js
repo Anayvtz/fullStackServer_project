@@ -4,9 +4,8 @@ const { updateYarnQuantity } = require("./yarnsDataAccessService");
 
 const createStock = async (newStock) => {
     try {
-        console.log("createStock. stock.image:", newStock.image)
+
         let stock = new StockModel(newStock);
-        console.log("createStock.after stockmodel. stock.image: ", stock.image);
 
         stock = await stock.save();
         return stock;
@@ -51,7 +50,6 @@ const updateStockImage = async (stockId, updStock) => {
         let stock = await StockModel.findById(stockId);
         stock.image.imageurl = updStock.image.imageurl;
         stock.image.alt = updStock.image.alt;
-        console.log("updateStock. stock.image:", stock.image);
 
         stock = await stock.save();
         return stock;
@@ -75,9 +73,6 @@ const findStockByYarnId = async (yarnId) => {
         if (!yarnId) return createError("findStockByYarnId", "yarnId", "yarnId is null");
         let stock = await StockModel.findOne({ yarnId: yarnId });
         if (!stock) return createError("findStockByYarnId", "stockModel.find", "stock is null. not found");
-        console.log("stock._id:" + stock._id);
-        console.log("stock.yarnId:" + stock.yarnId);
-        console.log("stock.image:", stock.image);
 
         return stock;
     } catch (error) {

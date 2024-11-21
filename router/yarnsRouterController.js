@@ -24,7 +24,7 @@ router.post("/", auth, async (req, res) => {
         if (!userInfo.isAdmin) {
             return handleError(res, 403, 'post("/yarns/")', "Only admin user can create new yarn");
         }
-        console.log("router.post('/yarns/ req.body.image", req.body.image);
+
         const errorMessage = validateYarn(req.body);
         if (errorMessage !== "") {
             return handleError(res, 400, 'post("/yarns/") validateYarn', "Validation error: " + errorMessage);
@@ -32,7 +32,6 @@ router.post("/", auth, async (req, res) => {
 
         let yarn = await normalizeYarn(req.body);
         yarn = await createYarn(yarn);
-        console.log("after createYarn. yarn.image:", yarn.image);
 
         let stock = { yarnId: yarn._id.toString(), image: { imageurl: yarn.image.imageurl || "/images/whiteYarn.png", alt: yarn.image.alt || "image alt" }, quantity: yarn.quantityInStock };
         const errorMsg = validateStock(stock);
@@ -89,19 +88,11 @@ router.put("/:id", auth, async (req, res) => {
         let yarn = await normalizeYarn(updYarn);
 
         let stock = await findStockByYarnId(id);
-        console.log("yarn id:" + id);
-        console.log("stock yarn id:" + stock);
-
-
-        console.log("UPD stock yarn id:" + stock.yarnId);
-        console.log("B4 yarn quantityInStock:" + yarn.quantityInStock);
-        console.log("B4 stock.quantity:" + stock.quantity);
 
         stock.quantity = yarn.quantityInStock;
-        console.log("AFTER stock.quantity:" + stock.quantity);
         await stock.save();
         yarn = await updateYarn(id, yarn);
-        // let stockYarnObject = await updateStock(stock._id, stock);
+
         res.send({ yarn, stock });
     } catch (error) {
         handleError(res, error.status || 400, 'router.put("/yarns/:id")', error.message);

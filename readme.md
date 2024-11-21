@@ -415,7 +415,7 @@ the array of orders
 
 # 2.1 create-order body
 ---------------------------------
-the array of cart. for ex.
+the array of cart (from users table). for ex.
 ```json
 [
     {

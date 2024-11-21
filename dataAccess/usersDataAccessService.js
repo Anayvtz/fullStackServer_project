@@ -47,8 +47,6 @@ const getUserByEmail = async (email) => {
 }
 const loginUser = async (email, password) => {
     try {
-        console.log("loginUser email:", email);
-        console.log("loginUser password:", password);
 
         const userFromDb = await UserModel.findOne({ email });
 
@@ -117,8 +115,6 @@ const addYarnToUserCart = async (userId, yarnId, image, quantity, price) => {
                 quantity = yarnQuantity;
             }
             if (image && image.alt && image.alt.length >= 2) {
-                console.log("image.alt:" + image.alt);
-
                 user.Cart.push({ yarnId, image, quantity, price });
             } else {
                 return createError("addYarnToUserCart", "Mongoose:", 'Invalid image data:' + image);
@@ -128,7 +124,6 @@ const addYarnToUserCart = async (userId, yarnId, image, quantity, price) => {
         }
 
         await user.save();
-        console.log("after user.save");
 
         return user.Cart;
     } catch (error) {
@@ -161,8 +156,6 @@ const getUserCartEntity = async (id, yarnId) => {
 
         for (let i = 0; i < user.Cart.length; i++) {
             if (user.Cart[i].yarnId == yarnId) {
-                console.log("getUserCartEntity yarnId:", user.Cart[i].yarnId);
-                console.log("getUserCartEntity quantity:", user.Cart[i].quantity);
 
                 return user.Cart[i];
             }

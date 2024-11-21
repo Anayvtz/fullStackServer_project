@@ -24,8 +24,6 @@ router.post('/upload-image', upload.single('image'), async (req, res) => {
         return res.status(400).json({ error: 'No image uploaded' });
     }
 
-    console.log("router.post('/upload-image' req.body:", req.body);
-
     // Image URL to be saved in the MongoDB database
     const imageUrl = `/images/${req.file.filename}`;
 
@@ -33,19 +31,15 @@ router.post('/upload-image', upload.single('image'), async (req, res) => {
     const yarnId = req.body.yarnId;  // Get the yarnId from the request body (or params)
 
     try {
-        console.log("router.post('/upload-image'. yarnId:", yarnId);
-        console.log("router.post('/upload-image'. imageUrl:", imageUrl);
 
         // Find the yarn document and update it with the image URL
         const updatedYarn = await YarnModel.findById(yarnId);
         updatedYarn.image.imageurl = imageUrl;
-        console.log("router.post('/upload-image'. updatedYarn.image.imageurl:", updatedYarn.image.imageurl);
         updatedYarn.save();
         if (!updatedYarn) {
             return res.status(404).send({ error: 'Yarn not found' });
         }
         let stock = await findStockByYarnId(yarnId);
-        console.log("after findStockByYarnId stock.image:", stock.image)
         stock.image.imageurl = imageUrl;
         stock.image.alt = updatedYarn.image.alt;
 

@@ -4,7 +4,7 @@ const { getStock, findStockByYarnId, updateStock } = require("./stockDataAccessS
 
 const createOrder = async (newOrder) => {
     try {
-        console.log("new order yarn:", newOrder.yarns)
+
         let order = new OrdersModel(newOrder);
         order.status = "inprocess";
         order = await order.save();

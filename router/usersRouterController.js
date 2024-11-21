@@ -148,7 +148,6 @@ router.put("/:id/cart", auth, async (req, res) => {
         }
 
         const { yarnId, image, quantity, price } = req.body;
-        console.log("B4 addYarnToUserCart");
 
         let cart = await addYarnToUserCart(id, yarnId, image, quantity, price);
         return res.send(cart);
@@ -171,7 +170,6 @@ router.delete("/:id/cart/:yarnId", auth, async (req, res) => {
             );
         }
         let cart = await removeYarnFromUserCart(id, yarnId);
-        console.log(cart);
 
         return res.send(cart);
     } catch (error) {
