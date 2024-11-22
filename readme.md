@@ -140,7 +140,7 @@ the updated user info
 {
     "yarnId": "yarn-id",
     "image": {
-            "imageurl": "the-image-url",
+            "imageurl": "the-image-url-in-/images",
             "alt": "yarn image"
         },
     "quantity": some-number,
@@ -156,6 +156,7 @@ the cart. i.e. array of yarn-id and quantity
     {
         "yarnId": "673497b0203e939c19c601b8",
         "image": {
+            "imageurl":"/images/whiteYarn.png",
             "alt": "yarn image"
         },
         "quantity": 3,
